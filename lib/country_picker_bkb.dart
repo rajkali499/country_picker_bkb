@@ -59,6 +59,7 @@ class _CountryPickerState extends State<CountryPicker> {
               Country(),
               const SizedBox(
                 height: 20,
+
               ),
               StatePicker(),
               const SizedBox(
