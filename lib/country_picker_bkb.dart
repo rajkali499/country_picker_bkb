@@ -53,23 +53,6 @@ class _CountryPickerState extends State<CountryPicker> {
                 height: 20,
               ),
               City(),
-              const SizedBox(
-                height: 100,
-              ),
-              Country(),
-              const SizedBox(
-                height: 20,
-
-              ),
-              StatePicker(),
-              const SizedBox(
-                height: 20,
-              ),
-              City(),
-              const SizedBox(
-                height: 20,
-              ),
-              MobileNumberCode(textEditingController: textEditingController),
             ],
           ),
         ),
@@ -116,7 +99,7 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                   filterCity();
                                 },
                                 decoration:  InputDecoration(
-                                  hintText: "Search here",
+                                  hintText: "Search city",
                                   suffixIcon: const Icon(Icons.search),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -216,7 +199,7 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                   filterCity();
                                 },
                                 decoration: InputDecoration(
-                                    hintText: "Search here",
+                                    hintText: "Search city",
                                     suffixIcon: const Icon(Icons.search),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
@@ -331,7 +314,7 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                   filterState();
                                 },
                                 decoration: InputDecoration(
-                                    hintText: "Search here",
+                                    hintText: "Search state",
                                     suffixIcon: const Icon(Icons.search),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
@@ -439,7 +422,7 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                   filterState();
                                 },
                                 decoration: InputDecoration(
-                                    hintText: "Search here",
+                                    hintText: "Search state",
                                     suffixIcon: const Icon(Icons.search),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
@@ -562,7 +545,7 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                   filterCountry();
                                 },
                                 decoration: InputDecoration(
-                                    hintText: "Search here",
+                                    hintText: "Search country",
                                     suffixIcon: const Icon(Icons.search),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
@@ -671,7 +654,7 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                   filterCountry();
                                 },
                                 decoration: InputDecoration(
-                                    hintText: "Search here",
+                                    hintText: "Search country",
                                     suffixIcon: const Icon(Icons.search),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
