@@ -45,7 +45,9 @@ class _MobileNumberCodeState extends State<MobileNumberCode> {
   @override
   void initState() {
     // TODO: implement initState
-
+    loadCountryData();
+    loadStateData();
+    loadCityData();
     _key = LabeledGlobalKey("button_icon");
     super.initState();
   }

@@ -6,7 +6,7 @@ version: 1.0.0
 homepage: https://github.com/rajkali499/country_picker_bkb.git
 
 environment:
-  sdk: '>=2.15.4 <3.0.0'
+  sdk: '>=2.18.4 <3.0.0'
   flutter: ">=1.17.0"
 
 dependencies:

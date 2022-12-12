@@ -35,7 +35,9 @@ class _StatePickerState extends State<StatePicker> {
   @override
   void initState() {
     // TODO: implement initState
-
+    loadCountryData();
+    loadStateData();
+    loadCityData();
     _key = LabeledGlobalKey("button_icon");
     super.initState();
   }
