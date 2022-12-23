@@ -2,7 +2,7 @@ name: country_picker_bkb
 description: This Package is about providing the sipmple country, state, city, dial code picker and can be designed based on
   user's wish also.Read the Read me file for more info about the Project.we can get details alone also whithout dependant to 
   any other details.
-version: 1.0.2
+version: 1.0.3
 homepage: https://github.com/rajkali499/country_picker_bkb.git
 
 environment:

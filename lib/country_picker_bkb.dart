@@ -53,6 +53,10 @@ class _CountryPickerState extends State<CountryPicker> {
                 height: 20,
               ),
               City(),
+              const SizedBox(
+                height: 20,
+              ),
+              MobileNumberCode(textEditingController: textEditingController),
             ],
           ),
         ),
@@ -822,6 +826,8 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,Val
                                                 onTap: () {
                                                   selectedCountryDetailsForPhoneCode
                                                       .value = element;
+                                                  value.value=element;
+                                                  print(value.value.dialCode);
                                                   phoneCodeFilter.clear();
                                                   Navigator.pop(context);
                                                 },
@@ -1015,6 +1021,8 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,Val
                                           onTap: () {
                                             selectedCountryDetailsForPhoneCode
                                                 .value = totalCounties[index];
+                                            value.value=totalCounties[index];
+                                            print(value.value.dialCode);
                                             phoneCodeFilter.clear();
                                             Navigator.pop(context);
                                           },
