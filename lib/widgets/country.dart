@@ -32,6 +32,8 @@ class _CountryState extends State<Country> {
   late Size buttonSize;
   late Offset buttonPosition;
 
+  ValueNotifier<Country_Model> country= ValueNotifier(Country_Model());
+
   @override
   void initState() {
     // TODO: implement initState
@@ -53,7 +55,7 @@ class _CountryState extends State<Country> {
     return InkWell(
       onTap: () {
         findButton();
-        countrySelect(context, buttonPosition, buttonSize);
+        countrySelect(context, buttonPosition, buttonSize,country);
       },
       child: widget.child ??
           Container(

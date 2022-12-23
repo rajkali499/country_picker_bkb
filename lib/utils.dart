@@ -151,7 +151,7 @@ var flags = {
   "MK": "packages/country_picker_bkb/lib/assets/svg/mk.svg",
   "ML": "packages/country_picker_bkb/lib/assets/svg/ml.svg",
   "MM": "packages/country_picker_bkb/lib/assets/svg/mm.svg",
-  "MM": "packages/country_picker_bkb/lib/assets/svg/mn.svg",
+  "MN": "packages/country_picker_bkb/lib/assets/svg/mn.svg",
   "MO": "packages/country_picker_bkb/lib/assets/svg/mo.svg",
   "MP": "packages/country_picker_bkb/lib/assets/svg/mp.svg",
   "MQ": "packages/country_picker_bkb/lib/assets/svg/mq.svg",

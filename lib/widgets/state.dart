@@ -32,6 +32,8 @@ class _StatePickerState extends State<StatePicker> {
   late Size buttonSize;
   late Offset buttonPosition;
 
+  ValueNotifier<State_Model> state = ValueNotifier(State_Model());
+
   @override
   void initState() {
     // TODO: implement initState
@@ -53,7 +55,7 @@ class _StatePickerState extends State<StatePicker> {
     return InkWell(
       onTap: () {
        findButton();
-       stateSelect(context, buttonPosition, buttonSize);
+       stateSelect(context, buttonPosition, buttonSize,state);
       },
       child: widget.child ??
           Container(

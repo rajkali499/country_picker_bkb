@@ -42,6 +42,8 @@ class _MobileNumberCodeState extends State<MobileNumberCode> {
   late Size buttonSize;
   late Offset buttonPosition;
 
+  ValueNotifier<Country_Model> country =ValueNotifier(Country_Model());
+
   @override
   void initState() {
     // TODO: implement initState
@@ -81,7 +83,7 @@ class _MobileNumberCodeState extends State<MobileNumberCode> {
                     InkWell(
                       onTap: () {
                         findButton();
-                        phoneCodeSelect(context, buttonPosition, buttonSize);
+                        phoneCodeSelect(context, buttonPosition, buttonSize,country);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),

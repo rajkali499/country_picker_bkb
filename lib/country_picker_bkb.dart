@@ -25,9 +25,9 @@ class _CountryPickerState extends State<CountryPicker> {
   @override
   void initState() {
     // TODO: implement initState
-    loadCountryData();
-    loadStateData();
-    loadCityData();
+      loadCountryData();
+      loadStateData();
+      loadCityData();
     super.initState();
   }
 
@@ -61,7 +61,7 @@ class _CountryPickerState extends State<CountryPicker> {
   }
 }
 
-citySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
+citySelect(BuildContext context, Offset buttonPosition, Size buttonSize,ValueNotifier<City_Model> value) {
   showDialog(
       barrierColor: Colors.transparent,
       context: context,
@@ -120,6 +120,8 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                                 onTap: () {
                                                   selectedDetailsForCity.value =
                                                       element;
+                                                  value.value=element;
+                                                  print(value.value.name);
                                                   cityFilter.clear();
                                                   Navigator.pop(context);
                                                 },
@@ -151,6 +153,8 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                               onTap: () {
                                                 selectedDetailsForCity.value =
                                                     totalCities[index];
+                                                value.value=totalCities[index];
+                                                print(value.value.name);
                                                 cityFilter.clear();
                                                 Navigator.pop(context);
                                               },
@@ -171,7 +175,7 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                       ),
                     )
                   : Positioned(
-                      top: buttonPosition.dy + 18,
+                      top: buttonPosition.dy,
                       left: buttonPosition.dx,
                       width: buttonSize.width,
                       height: MediaQuery.of(context).size.height -
@@ -220,6 +224,8 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                                 onTap: () {
                                                   selectedDetailsForCity.value =
                                                       element;
+                                                  value.value=element;
+                                                  print(value.value.name);
                                                   cityFilter.clear();
                                                   Navigator.pop(context);
                                                 },
@@ -233,7 +239,7 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                               ))
                                           .toList(),
                                     )
-                                  : totalStates.isEmpty
+                                  : totalCities.isEmpty
                                       ? const Padding(
                                           padding: EdgeInsets.symmetric(
                                               vertical: 10.0),
@@ -251,6 +257,8 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                               onTap: () {
                                                 selectedDetailsForCity.value =
                                                     totalCities[index];
+                                                value.value=totalCities[index];
+                                                print(value.value.name);
                                                 cityFilter.clear();
                                                 Navigator.pop(context);
                                               },
@@ -276,7 +284,7 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
       });
 }
 
-stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
+stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize, ValueNotifier<State_Model> value) {
   showDialog(
       barrierColor: Colors.transparent,
       context: context,
@@ -335,6 +343,8 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                                 onTap: () {
                                                   selectedDetailsForState
                                                       .value = element;
+                                                  value.value=element;
+                                                  print(value.value.name);
                                                   totalCities = [];
                                                   loadCityData();
                                                   selectedDetailsForCity.value =
@@ -370,6 +380,8 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                               onTap: () {
                                                 selectedDetailsForState.value =
                                                     totalStates[index];
+                                                value.value=totalStates[index];
+                                                print(value.value.name);
                                                 totalCities = [];
                                                 loadCityData();
                                                 selectedDetailsForCity.value =
@@ -394,7 +406,7 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                       ),
                     )
                   : Positioned(
-                      top: buttonPosition.dy + 18,
+                      top: buttonPosition.dy,
                       left: buttonPosition.dx,
                       width: buttonSize.width,
                       height: MediaQuery.of(context).size.height -
@@ -443,6 +455,8 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                                 onTap: () {
                                                   selectedDetailsForState
                                                       .value = element;
+                                                  value.value=element;
+                                                  print(value.value.name);
                                                   totalCities = [];
                                                   loadCityData();
                                                   selectedDetailsForCity.value =
@@ -478,6 +492,8 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                               onTap: () {
                                                 selectedDetailsForState.value =
                                                     totalStates[index];
+                                                value.value=totalStates[index];
+                                                print(value.value.name);
                                                 totalCities = [];
                                                 loadCityData();
                                                 selectedDetailsForCity.value =
@@ -507,7 +523,7 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
       });
 }
 
-countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
+countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,ValueNotifier<Country_Model> value) {
   showDialog(
       barrierColor: Colors.transparent,
       context: context,
@@ -565,6 +581,8 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                               onTap: () {
                                                 selectedDetailsForCountry
                                                     .value = element;
+                                                value.value=element;
+                                                print(value.value.name);
                                                 totalStates = [];
                                                 loadStateData();
                                                 totalCities = [];
@@ -598,6 +616,8 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                           onTap: () {
                                             selectedDetailsForCountry.value =
                                                 totalCounties[index];
+                                            value.value=totalCounties[index];
+                                            print(value.value.name);
                                             totalStates = [];
                                             loadStateData();
                                             totalCities = [];
@@ -626,7 +646,7 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                       ),
                     )
                   : Positioned(
-                      top: buttonPosition.dy + 18,
+                      top: buttonPosition.dy,
                       left: buttonPosition.dx,
                       width: buttonSize.width,
                       height: MediaQuery.of(context).size.height -
@@ -674,6 +694,8 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                               onTap: () {
                                                 selectedDetailsForCountry
                                                     .value = element;
+                                                value.value=element;
+                                                print(value.value.name);
                                                 totalStates = [];
                                                 loadStateData();
                                                 totalCities = [];
@@ -707,6 +729,8 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                           onTap: () {
                                             selectedDetailsForCountry.value =
                                                 totalCounties[index];
+                                            value.value=totalCounties[index];
+                                            print(value.value.name);
                                             totalStates = [];
                                             loadStateData();
                                             totalCities = [];
@@ -740,7 +764,7 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
       });
 }
 
-phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
+phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,ValueNotifier<Country_Model> value) {
   showDialog(
       barrierColor: Colors.transparent,
       context: context,
@@ -846,6 +870,8 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                           onTap: () {
                                             selectedCountryDetailsForPhoneCode
                                                 .value = totalCounties[index];
+                                            value.value=totalCounties[index];
+                                            print(value.value.dialCode);
                                             phoneCodeFilter.clear();
                                             Navigator.pop(context);
                                           },
@@ -891,7 +917,7 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                       ),
                     )
                   : Positioned(
-                      top: buttonPosition.dy + 18,
+                      top: buttonPosition.dy,
                       left: buttonPosition.dx,
                       width: buttonSize.width,
                       height: MediaQuery.of(context).size.height -
@@ -939,6 +965,8 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize) {
                                                 onTap: () {
                                                   selectedCountryDetailsForPhoneCode
                                                       .value = element;
+                                                  value.value=element;
+                                                  print(value.value.dialCode);
                                                   phoneCodeFilter.clear();
                                                   Navigator.pop(context);
                                                 },
@@ -1042,6 +1070,7 @@ Future<dynamic> loadCountryData() async {
       'packages/country_picker_bkb/lib/assets/json/country_details.json');
   var countryDetail = jsonDecode(res);
   // Country_Model country_model=Country_Model.fromJson(jsonDecode(res;
+  totalCounties=[];
   countryDetail.forEach((element) {
     totalCounties.add(Country_Model.fromJson(element));
   });
@@ -1054,6 +1083,7 @@ Future<dynamic> loadStateData() async {
   var countryDetail = jsonDecode(res);
   // Country_Model country_model=Country_Model.fromJson(jsonDecode(res;
   if (selectedDetailsForCountry.value.name != null) {
+    totalStates=[];
     countryDetail.forEach((element) {
       if (element['name'] == selectedDetailsForCountry.value.name) {
         element['state'].forEach((value) {
@@ -1062,6 +1092,7 @@ Future<dynamic> loadStateData() async {
       }
     });
   } else {
+    totalStates=[];
     countryDetail.forEach((element) {
       element['state'].forEach((value) {
         totalStates.add(State_Model.fromJson(value));
