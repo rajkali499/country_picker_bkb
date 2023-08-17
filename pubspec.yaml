@@ -28,7 +28,7 @@ flutter:
   # To add assets to your package, add an assets section, like this:
   assets:
     - lib/assets/
-    - lib/assets/json/
+    - lib/assets/json/country_details_minified.json
     - lib/assets/svg/
   #   - images/a_dot_ham.jpeg
   #
