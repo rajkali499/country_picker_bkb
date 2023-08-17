@@ -122,9 +122,16 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize,ValueNot
                                       children: filteredCity
                                           .map((element) => InkWell(
                                                 onTap: () {
-                                                  selectedDetailsForCity.value =
-                                                      element;
-                                                  value.value=element;
+                                                  if (element.name ==
+                                                      noneName) {
+                                                    selectedDetailsForCity
+                                                        .value = emptyCity;
+                                                    value.value = emptyCity;
+                                                  } else {
+                                                    selectedDetailsForCity
+                                                        .value = element;
+                                                    value.value = element;
+                                                  }
                                                   print(value.value.name);
                                                   cityFilter.clear();
                                                   Navigator.pop(context);
@@ -155,9 +162,17 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize,ValueNot
                                           itemBuilder: (context, int index) {
                                             return InkWell(
                                               onTap: () {
-                                                selectedDetailsForCity.value =
-                                                    totalCities[index];
-                                                value.value=totalCities[index];
+                                                if (totalCities[index].name ==
+                                                    noneName) {
+                                                  selectedDetailsForCity.value =
+                                                      emptyCity;
+                                                  value.value = emptyCity;
+                                                } else {
+                                                  selectedDetailsForCity.value =
+                                                      totalCities[index];
+                                                  value.value =
+                                                      totalCities[index];
+                                                }
                                                 print(value.value.name);
                                                 cityFilter.clear();
                                                 Navigator.pop(context);
@@ -226,9 +241,16 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize,ValueNot
                                       children: filteredCity
                                           .map((element) => InkWell(
                                                 onTap: () {
-                                                  selectedDetailsForCity.value =
-                                                      element;
-                                                  value.value=element;
+                                                  if (element.name ==
+                                                      noneName) {
+                                                    selectedDetailsForCity
+                                                        .value = emptyCity;
+                                                    value.value = emptyCity;
+                                                  } else {
+                                                    selectedDetailsForCity
+                                                        .value = element;
+                                                    value.value = element;
+                                                  }
                                                   print(value.value.name);
                                                   cityFilter.clear();
                                                   Navigator.pop(context);
@@ -259,9 +281,17 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize,ValueNot
                                           itemBuilder: (context, int index) {
                                             return InkWell(
                                               onTap: () {
-                                                selectedDetailsForCity.value =
-                                                    totalCities[index];
-                                                value.value=totalCities[index];
+                                                if (totalCities[index].name ==
+                                                    noneName) {
+                                                  selectedDetailsForCity.value =
+                                                      emptyCity;
+                                                  value.value = emptyCity;
+                                                } else {
+                                                  selectedDetailsForCity.value =
+                                                      totalCities[index];
+                                                  value.value =
+                                                      totalCities[index];
+                                                }
                                                 print(value.value.name);
                                                 cityFilter.clear();
                                                 Navigator.pop(context);
@@ -345,9 +375,16 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize, ValueN
                                       children: filteredState
                                           .map((element) => InkWell(
                                                 onTap: () {
-                                                  selectedDetailsForState
-                                                      .value = element;
-                                                  value.value=element;
+                                                  if (element.name ==
+                                                      noneName) {
+                                                    selectedDetailsForState
+                                                        .value = emptyState;
+                                                    value.value = emptyState;
+                                                  } else {
+                                                    selectedDetailsForState
+                                                        .value = element;
+                                                    value.value = element;
+                                                  }
                                                   print(value.value.name);
                                                   totalCities = [];
                                                   loadCityData();
@@ -382,9 +419,18 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize, ValueN
                                           itemBuilder: (context, int index) {
                                             return InkWell(
                                               onTap: () {
-                                                selectedDetailsForState.value =
-                                                    totalStates[index];
-                                                value.value=totalStates[index];
+                                                if (totalStates[index].name ==
+                                                    noneName) {
+                                                  selectedDetailsForState
+                                                      .value = emptyState;
+                                                  value.value = emptyState;
+                                                } else {
+                                                  selectedDetailsForState
+                                                          .value =
+                                                      totalStates[index];
+                                                  value.value =
+                                                      totalStates[index];
+                                                }
                                                 print(value.value.name);
                                                 totalCities = [];
                                                 loadCityData();
@@ -457,9 +503,16 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize, ValueN
                                       children: filteredState
                                           .map((element) => InkWell(
                                                 onTap: () {
-                                                  selectedDetailsForState
-                                                      .value = element;
-                                                  value.value=element;
+                                                  if (element.name ==
+                                                      noneName) {
+                                                    selectedDetailsForState
+                                                        .value = emptyState;
+                                                    value.value = emptyState;
+                                                  } else {
+                                                    selectedDetailsForState
+                                                        .value = element;
+                                                    value.value = element;
+                                                  }
                                                   print(value.value.name);
                                                   totalCities = [];
                                                   loadCityData();
@@ -494,9 +547,18 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize, ValueN
                                           itemBuilder: (context, int index) {
                                             return InkWell(
                                               onTap: () {
-                                                selectedDetailsForState.value =
-                                                    totalStates[index];
-                                                value.value=totalStates[index];
+                                                if (totalStates[index].name ==
+                                                    noneName) {
+                                                  selectedDetailsForState
+                                                      .value = emptyState;
+                                                  value.value = emptyState;
+                                                } else {
+                                                  selectedDetailsForState
+                                                          .value =
+                                                      totalStates[index];
+                                                  value.value =
+                                                      totalStates[index];
+                                                }
                                                 print(value.value.name);
                                                 totalCities = [];
                                                 loadCityData();
@@ -583,9 +645,15 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,Value
                                           .map(
                                             (element) => InkWell(
                                               onTap: () {
-                                                selectedDetailsForCountry
-                                                    .value = element;
-                                                value.value=element;
+                                                if (element.name == noneName) {
+                                                  selectedDetailsForCountry
+                                                      .value = emptyCountry;
+                                                  value.value = emptyCountry;
+                                                } else {
+                                                  selectedDetailsForCountry
+                                                      .value = element;
+                                                  value.value = element;
+                                                }
                                                 print(value.value.name);
                                                 totalStates = [];
                                                 loadStateData();
@@ -618,9 +686,17 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,Value
                                       itemBuilder: (context, int index) {
                                         return InkWell(
                                           onTap: () {
-                                            selectedDetailsForCountry.value =
-                                                totalCounties[index];
-                                            value.value=totalCounties[index];
+                                            if (totalCounties[index].name ==
+                                                noneName) {
+                                              selectedDetailsForCountry.value =
+                                                  emptyCountry;
+                                              value.value = emptyCountry;
+                                            } else {
+                                              selectedDetailsForCountry.value =
+                                                  totalCounties[index];
+                                              value.value =
+                                                  totalCounties[index];
+                                            }
                                             print(value.value.name);
                                             totalStates = [];
                                             loadStateData();
@@ -696,9 +772,15 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,Value
                                           .map(
                                             (element) => InkWell(
                                               onTap: () {
-                                                selectedDetailsForCountry
-                                                    .value = element;
-                                                value.value=element;
+                                                if (element.name == noneName) {
+                                                  selectedDetailsForCountry
+                                                      .value = emptyCountry;
+                                                  value.value = emptyCountry;
+                                                } else {
+                                                  selectedDetailsForCountry
+                                                      .value = element;
+                                                  value.value = element;
+                                                }
                                                 print(value.value.name);
                                                 totalStates = [];
                                                 loadStateData();
@@ -731,9 +813,17 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,Value
                                       itemBuilder: (context, int index) {
                                         return InkWell(
                                           onTap: () {
-                                            selectedDetailsForCountry.value =
-                                                totalCounties[index];
-                                            value.value=totalCounties[index];
+                                            if (totalCounties[index].name ==
+                                                noneName) {
+                                              selectedDetailsForCountry.value =
+                                                  emptyCountry;
+                                              value.value = emptyCountry;
+                                            } else {
+                                              selectedDetailsForCountry.value =
+                                                  totalCounties[index];
+                                              value.value =
+                                                  totalCounties[index];
+                                            }
                                             print(value.value.name);
                                             totalStates = [];
                                             loadStateData();
@@ -824,9 +914,16 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,Val
                                       children: filteredCountriesForCode
                                           .map((element) => InkWell(
                                                 onTap: () {
-                                                  selectedCountryDetailsForPhoneCode
-                                                      .value = element;
-                                                  value.value=element;
+                                                  if (element.name ==
+                                                      noneName) {
+                                                    selectedCountryDetailsForPhoneCode
+                                                        .value = emptyCountry;
+                                                    value.value = emptyCountry;
+                                                  } else {
+                                                    selectedCountryDetailsForPhoneCode
+                                                        .value = element;
+                                                    value.value = element;
+                                                  }
                                                   print(value.value.dialCode);
                                                   phoneCodeFilter.clear();
                                                   Navigator.pop(context);
@@ -874,9 +971,17 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,Val
                                       itemBuilder: (context, int index) {
                                         return InkWell(
                                           onTap: () {
-                                            selectedCountryDetailsForPhoneCode
-                                                .value = totalCounties[index];
-                                            value.value=totalCounties[index];
+                                            if (totalCounties[index].name ==
+                                                noneName) {
+                                              selectedCountryDetailsForPhoneCode
+                                                  .value = emptyCountry;
+                                              value.value = emptyCountry;
+                                            } else {
+                                              selectedCountryDetailsForPhoneCode
+                                                  .value = totalCounties[index];
+                                              value.value =
+                                                  totalCounties[index];
+                                            }
                                             print(value.value.dialCode);
                                             phoneCodeFilter.clear();
                                             Navigator.pop(context);
@@ -969,9 +1074,16 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,Val
                                       children: filteredCountriesForCode
                                           .map((element) => InkWell(
                                                 onTap: () {
-                                                  selectedCountryDetailsForPhoneCode
-                                                      .value = element;
-                                                  value.value=element;
+                                                  if (element.name ==
+                                                      noneName) {
+                                                    selectedCountryDetailsForPhoneCode
+                                                        .value = emptyCountry;
+                                                    value.value = emptyCountry;
+                                                  } else {
+                                                    selectedCountryDetailsForPhoneCode
+                                                        .value = element;
+                                                    value.value = element;
+                                                  }
                                                   print(value.value.dialCode);
                                                   phoneCodeFilter.clear();
                                                   Navigator.pop(context);
@@ -1019,9 +1131,17 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,Val
                                       itemBuilder: (context, int index) {
                                         return InkWell(
                                           onTap: () {
-                                            selectedCountryDetailsForPhoneCode
-                                                .value = totalCounties[index];
-                                            value.value=totalCounties[index];
+                                            if (totalCounties[index].name ==
+                                                noneName) {
+                                              selectedCountryDetailsForPhoneCode
+                                                  .value = emptyCountry;
+                                              value.value = emptyCountry;
+                                            } else {
+                                              selectedCountryDetailsForPhoneCode
+                                                  .value = totalCounties[index];
+                                              value.value =
+                                                  totalCounties[index];
+                                            }
                                             print(value.value.dialCode);
                                             phoneCodeFilter.clear();
                                             Navigator.pop(context);
@@ -1075,10 +1195,10 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,Val
 
 Future<dynamic> loadCountryData() async {
   var res = await rootBundle.loadString(
-      'packages/country_picker_bkb/lib/assets/json/country_details.json');
+      'packages/country_picker_bkb/lib/assets/json/$jsonPath');
   var countryDetail = jsonDecode(res);
   // Country_Model country_model=Country_Model.fromJson(jsonDecode(res;
-  totalCounties=[];
+  totalCounties=[noneCountry];
   countryDetail.forEach((element) {
     totalCounties.add(Country_Model.fromJson(element));
   });
@@ -1087,11 +1207,11 @@ Future<dynamic> loadCountryData() async {
 
 Future<dynamic> loadStateData() async {
   var res = await rootBundle.loadString(
-      'packages/country_picker_bkb/lib/assets/json/country_details.json');
+      'packages/country_picker_bkb/lib/assets/json/$jsonPath');
   var countryDetail = jsonDecode(res);
   // Country_Model country_model=Country_Model.fromJson(jsonDecode(res;
   if (selectedDetailsForCountry.value.name != null) {
-    totalStates=[];
+    totalStates=[noneState];
     countryDetail.forEach((element) {
       if (element['name'] == selectedDetailsForCountry.value.name) {
         element['state'].forEach((value) {
@@ -1100,7 +1220,7 @@ Future<dynamic> loadStateData() async {
       }
     });
   } else {
-    totalStates=[];
+    totalStates=[noneState];
     countryDetail.forEach((element) {
       element['state'].forEach((value) {
         totalStates.add(State_Model.fromJson(value));
@@ -1112,12 +1232,12 @@ Future<dynamic> loadStateData() async {
 
 Future<dynamic> loadCityData() async {
   var res = await rootBundle.loadString(
-      'packages/country_picker_bkb/lib/assets/json/country_details.json');
+      'packages/country_picker_bkb/lib/assets/json/$jsonPath');
   var countryDetail = jsonDecode(res);
   // Country_Model country_model=Country_Model.fromJson(jsonDecode(res;
   if (selectedDetailsForCountry.value.name != null &&
       selectedDetailsForState.value.name != null) {
-    totalCities=[];
+    totalCities=[noneCity];
     countryDetail.forEach((element) {
       if (element['name'] == selectedDetailsForCountry.value.name) {
         element['state'].forEach((value) {
@@ -1130,7 +1250,7 @@ Future<dynamic> loadCityData() async {
       }
     });
   } else if (selectedDetailsForCountry.value.name != null) {
-    totalCities=[];
+    totalCities=[noneCity];
     countryDetail.forEach((element) {
       if (element['name'] == selectedDetailsForCountry.value.name) {
         element['state'].forEach((value) {

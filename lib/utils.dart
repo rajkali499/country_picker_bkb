@@ -2,6 +2,18 @@ import 'package:flutter/cupertino.dart';
 
 import 'model/country_model.dart';
 
+const noneName = "None";
+
+final noneCountry = Country_Model(name: noneName);
+final noneState = State_Model(name: noneName);
+final noneCity = City_Model(name: noneName);
+
+final emptyCountry = Country_Model();
+final emptyState = State_Model();
+final emptyCity = City_Model();
+
+const jsonPath = 'country_details_minified.json';
+
 var flags = {
   "AD": "packages/country_picker_bkb/lib/assets/svg/ad.svg",
   "AE": "packages/country_picker_bkb/lib/assets/svg/ae.svg",
