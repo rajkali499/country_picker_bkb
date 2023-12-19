@@ -1,6 +1,6 @@
 name: country_picker_bkb
 description: This Flutter package provides a customizable country, state, city, and dial code picker. It allows users to obtain details independently without relying on other information..
-version: 1.0.5
+version: 1.0.6
 homepage: https://github.com/rajkali499/country_picker_bkb.git
 
 environment:
