@@ -6,14 +6,14 @@ import 'package:flutter_svg/svg.dart';
 import '../model/country_model.dart';
 
 class StatePicker extends StatefulWidget {
-  Widget? child;
-  EdgeInsets? padding;
-  double? height;
-  double? width;
-  Color? color;
-  Decoration? decoration;
+  final Widget? child;
+  final EdgeInsets? padding;
+  final double? height;
+  final double? width;
+  final Color? color;
+  final Decoration? decoration;
 
-  StatePicker(
+  const StatePicker(
       {Key? key,
       this.child,
       this.decoration,
@@ -32,7 +32,7 @@ class _StatePickerState extends State<StatePicker> {
   late Size buttonSize;
   late Offset buttonPosition;
 
-  ValueNotifier<State_Model> state = ValueNotifier(State_Model());
+  ValueNotifier<StateModel> state = ValueNotifier(StateModel());
 
   @override
   void initState() {
@@ -55,7 +55,7 @@ class _StatePickerState extends State<StatePicker> {
     return InkWell(
       onTap: () {
        findButton();
-       stateSelect(context, buttonPosition, buttonSize,state);
+       stateSelect(context, buttonPosition, buttonSize,state,selectedDetailsForCountry);
       },
       child: widget.child ??
           Container(
@@ -70,7 +70,7 @@ class _StatePickerState extends State<StatePicker> {
                 ),
             child: ValueListenableBuilder(
               valueListenable: selectedDetailsForState,
-              builder: (context, State_Model selectedState, child) {
+              builder: (context, StateModel selectedState, child) {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

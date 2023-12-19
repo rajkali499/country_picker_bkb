@@ -1,13 +1,13 @@
-class Country_Model {
+class CountryModel {
   int? id;
   String? name;
   String? emoji;
   String? emojiU;
-  List<State_Model>? state;
+  List<StateModel>? state;
   String? dialCode;
   String? code;
 
-  Country_Model(
+  CountryModel(
       {this.id,
         this.name,
         this.emoji,
@@ -16,15 +16,15 @@ class Country_Model {
         this.dialCode,
         this.code});
 
-  Country_Model.fromJson(Map<String, dynamic> json) {
+  CountryModel.fromJson(Map<String, dynamic> json) {
     id = json['id']??0;
     name = json['name']??"";
     emoji = json['emoji']??"";
     emojiU = json['emojiU']??"";
     if (json['state'] != null) {
-      state = <State_Model>[];
+      state = <StateModel>[];
       json['state'].forEach((v) {
-        state?.add(new State_Model.fromJson(v));
+        state?.add(StateModel.fromJson(v));
       });
     }
     dialCode = json['dial_code']??"";
@@ -32,70 +32,70 @@ class Country_Model {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['emoji'] = this.emoji;
-    data['emojiU'] = this.emojiU;
-    if (this.state != null) {
-      data['state'] = this.state?.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['emoji'] = emoji;
+    data['emojiU'] = emojiU;
+    if (state != null) {
+      data['state'] = state?.map((v) => v.toJson()).toList();
     }
-    data['dial_code'] = this.dialCode;
-    data['code'] = this.code;
+    data['dial_code'] = dialCode;
+    data['code'] = code;
     return data;
   }
 }
 
-class State_Model {
+class StateModel {
   int? id;
   String? name;
   int? countryId;
-  List<City_Model>? city;
+  List<CityModel>? city;
 
-  State_Model({this.id, this.name, this.countryId, this.city});
+  StateModel({this.id, this.name, this.countryId, this.city});
 
-  State_Model.fromJson(Map<String, dynamic> json) {
+  StateModel.fromJson(Map<String, dynamic> json) {
     id = json['id']??0;
     name = json['name']??"";
     countryId = json['country_id']??0;
     if (json['city'] != null) {
-      city = <City_Model>[];
+      city = <CityModel>[];
       json['city'].forEach((v) {
-        city?.add(new City_Model.fromJson(v));
+        city?.add(CityModel.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['country_id'] = this.countryId;
-    if (this.city != null) {
-      data['city'] = this.city?.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['country_id'] = countryId;
+    if (city != null) {
+      data['city'] = city?.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class City_Model {
+class CityModel {
   int? id;
   String? name;
   int? stateId;
 
-  City_Model({this.id, this.name, this.stateId});
+  CityModel({this.id, this.name, this.stateId});
 
-  City_Model.fromJson(Map<String, dynamic> json) {
+  CityModel.fromJson(Map<String, dynamic> json) {
     id = json['id']??0;
     name = json['name']??"";
     stateId = json['state_id']??0;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['state_id'] = this.stateId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['state_id'] = stateId;
     return data;
   }
 }

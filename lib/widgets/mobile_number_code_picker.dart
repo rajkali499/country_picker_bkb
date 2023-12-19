@@ -6,20 +6,20 @@ import '../country_picker_bkb.dart';
 import '../utils.dart';
 
 class MobileNumberCode extends StatefulWidget {
-  Color? color;
-  Decoration? decoration;
-  double? width;
-  double? height;
-  EdgeInsetsGeometry? padding;
-  String? downArrow;
-  TextEditingController textEditingController;
-  TextInputType? keyBoardType;
-  InputDecoration? textFieldDecoration;
-  Function(String)? onChanged;
-  String? Function(String?)? validator;
-  Widget? child;
+  final Color? color;
+  final Decoration? decoration;
+  final double? width;
+  final double? height;
+  final EdgeInsetsGeometry? padding;
+  final String? downArrow;
+  final TextEditingController textEditingController;
+  final TextInputType? keyBoardType;
+  final InputDecoration? textFieldDecoration;
+  final Function(String)? onChanged;
+  final String? Function(String?)? validator;
+  final Widget? child;
 
-  MobileNumberCode({
+  const MobileNumberCode({
     Key? key,
     this.color,
     this.decoration,
@@ -30,7 +30,7 @@ class MobileNumberCode extends StatefulWidget {
     required this.textEditingController,
     this.keyBoardType,
     this.textFieldDecoration,
-    this.child,
+    this.child, this.onChanged, this.validator,
   }) : super(key: key);
 
   @override
@@ -42,7 +42,7 @@ class _MobileNumberCodeState extends State<MobileNumberCode> {
   late Size buttonSize;
   late Offset buttonPosition;
 
-  ValueNotifier<Country_Model> country =ValueNotifier(Country_Model());
+  ValueNotifier<CountryModel> country =ValueNotifier(CountryModel());
 
   @override
   void initState() {
@@ -76,7 +76,7 @@ class _MobileNumberCodeState extends State<MobileNumberCode> {
             ),
         child: ValueListenableBuilder(
           valueListenable: selectedCountryDetailsForPhoneCode,
-          builder: (context, Country_Model selectedValue, child) {
+          builder: (context, CountryModel selectedValue, child) {
             return widget.child ??
                 Row(
                   children: [
@@ -116,9 +116,11 @@ class _MobileNumberCodeState extends State<MobileNumberCode> {
                         keyboardType:
                             widget.keyBoardType ?? TextInputType.phone,
                         decoration:
-                            widget.textFieldDecoration ?? InputDecoration(),
+                            widget.textFieldDecoration ?? const InputDecoration(),
                         onChanged: widget.onChanged ?? (val) {},
-                        validator: widget.validator ?? (val) {},
+                        validator: widget.validator ?? (val) {
+                          return null;
+                        },
                       ),
                     ),
                   ],

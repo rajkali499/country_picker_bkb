@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the countrySelect function from the country_picker_bkb library, for the Dart programming language.">
+  <title>countrySelect function - country_picker_bkb library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">country_picker_bkb</a></li>
+    <li><a href="../country_picker_bkb/country_picker_bkb-library.html">country_picker_bkb.dart</a></li>
+    <li class="self-crumb">countrySelect function</li>
+  </ol>
+  <div class="self-name">countrySelect</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="country_picker_bkb&#47;country_picker_bkb-library-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-function">countrySelect</span> function 
+ 
+</h1></div>
+
+    <section class="multi-line-signature">
+        
+
+<span class="returntype">dynamic</span>
+<span class="name ">countrySelect</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="countrySelect-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span></li>
+<li><span class="parameter" id="countrySelect-param-buttonPosition"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Offset-class.html">Offset</a></span> <span class="parameter-name">buttonPosition</span>, </span></li>
+<li><span class="parameter" id="countrySelect-param-buttonSize"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Size-class.html">Size</a></span> <span class="parameter-name">buttonSize</span>, </span></li>
+<li><span class="parameter" id="countrySelect-param-value"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/ValueNotifier-class.html">ValueNotifier</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../model_country_model/CountryModel-class.html">CountryModel</a></span>&gt;</span></span> <span class="parameter-name">value</span></span></li>
+</ol>)
+
+        
+
+    </section>
+    
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,
+    ValueNotifier&lt;CountryModel&gt; value) {
+  showDialog(
+      barrierColor: Colors.transparent,
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(builder: (context, refresh) {
+          return Stack(
+            children: [
+              buttonPosition.dy &gt; MediaQuery.of(context).size.height * 0.5
+                  ? Positioned(
+                      bottom: (MediaQuery.of(context).size.height -
+                          buttonPosition.dy),
+                      left: buttonPosition.dx,
+                      width: buttonSize.width,
+                      height: (MediaQuery.of(context).size.height &#47; 2) +
+                          (buttonSize.height &#47; 4),
+                      child: Material(
+                        elevation: 3,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                controller: countryFilter,
+                                onChanged: (val) {
+                                  refresh(() {
+                                    countryFilter.text = val;
+                                  });
+                                  countryFilter.selection =
+                                      TextSelection.fromPosition(TextPosition(
+                                          offset: countryFilter.text.length));
+                                  filterCountry();
+                                },
+                                decoration: InputDecoration(
+                                    hintText: &quot;Search country&quot;,
+                                    suffixIcon: const Icon(Icons.search),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    )),
+                              ),
+                            ),
+                            Expanded(
+                              child: countryFilter.text.isNotEmpty
+                                  ? ListView(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      shrinkWrap: true,
+                                      children: filteredCountries
+                                          .map(
+                                            (element) =&gt; InkWell(
+                                              onTap: () {
+                                                if (element.name == noneName) {
+                                                  selectedDetailsForCountry
+                                                      .value = emptyCountry;
+                                                  value.value = emptyCountry;
+                                                } else {
+                                                  selectedDetailsForCountry
+                                                      .value = element;
+                                                  value.value = element;
+                                                }
+                                                debugPrint(value.value.name);
+                                                totalStates = [];
+                                                loadStateData(
+                                                    selectedDetailsForCountry1:
+                                                        value);
+                                                totalCities = [];
+                                                loadCityData();
+                                                countryFilter.clear();
+                                                selectedDetailsForState.value =
+                                                    StateModel();
+                                                selectedDetailsForCity.value =
+                                                    CityModel();
+                                                Navigator.pop(context);
+                                              },
+                                              splashColor: Colors.blue,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 10.0,
+                                                        horizontal: 10),
+                                                child: Text(element.name ?? &quot;&quot;),
+                                              ),
+                                            ),
+                                          )
+                                          .toList(),
+                                    )
+                                  : ListView.builder(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      itemCount: totalCounties.length,
+                                      shrinkWrap: true,
+                                      itemBuilder: (context, int index) {
+                                        return InkWell(
+                                          onTap: () {
+                                            if (totalCounties[index].name ==
+                                                noneName) {
+                                              selectedDetailsForCountry.value =
+                                                  emptyCountry;
+                                              value.value = emptyCountry;
+                                            } else {
+                                              selectedDetailsForCountry.value =
+                                                  totalCounties[index];
+                                              value.value =
+                                                  totalCounties[index];
+                                            }
+                                            debugPrint(value.value.name);
+                                            totalStates = [];
+                                            loadStateData(
+                                                selectedDetailsForCountry1:
+                                                    value);
+                                            totalCities = [];
+                                            loadCityData();
+                                            countryFilter.clear();
+                                            selectedDetailsForState.value =
+                                                StateModel();
+                                            selectedDetailsForCity.value =
+                                                CityModel();
+                                            Navigator.pop(context);
+                                          },
+                                          splashColor: Colors.blue,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10.0, horizontal: 10),
+                                            child: Text(
+                                                totalCounties[index].name ??
+                                                    &quot;&quot;),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  : Positioned(
+                      top: buttonPosition.dy,
+                      left: buttonPosition.dx,
+                      width: buttonSize.width,
+                      height: MediaQuery.of(context).size.height -
+                          buttonPosition.dy -
+                          100,
+                      child: Material(
+                        elevation: 3,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                controller: countryFilter,
+                                onChanged: (val) {
+                                  refresh(() {
+                                    countryFilter.text = val;
+                                  });
+                                  countryFilter.selection =
+                                      TextSelection.fromPosition(TextPosition(
+                                          offset: countryFilter.text.length));
+                                  filterCountry();
+                                },
+                                decoration: InputDecoration(
+                                    hintText: &quot;Search country&quot;,
+                                    suffixIcon: const Icon(Icons.search),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    )),
+                              ),
+                            ),
+                            Expanded(
+                              child: countryFilter.text.isNotEmpty
+                                  ? ListView(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      shrinkWrap: true,
+                                      children: filteredCountries
+                                          .map(
+                                            (element) =&gt; InkWell(
+                                              onTap: () {
+                                                if (element.name == noneName) {
+                                                  selectedDetailsForCountry
+                                                      .value = emptyCountry;
+                                                  value.value = emptyCountry;
+                                                } else {
+                                                  selectedDetailsForCountry
+                                                      .value = element;
+                                                  value.value = element;
+                                                }
+                                                debugPrint(value.value.name);
+                                                totalStates = [];
+                                                loadStateData(
+                                                    selectedDetailsForCountry1:
+                                                        value);
+                                                totalCities = [];
+                                                loadCityData();
+                                                countryFilter.clear();
+                                                selectedDetailsForState.value =
+                                                    StateModel();
+                                                selectedDetailsForCity.value =
+                                                    CityModel();
+                                                Navigator.pop(context);
+                                              },
+                                              splashColor: Colors.blue,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 10.0,
+                                                        horizontal: 10),
+                                                child: Text(element.name ?? &quot;&quot;),
+                                              ),
+                                            ),
+                                          )
+                                          .toList(),
+                                    )
+                                  : ListView.builder(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      itemCount: totalCounties.length,
+                                      shrinkWrap: true,
+                                      itemBuilder: (context, int index) {
+                                        return InkWell(
+                                          onTap: () {
+                                            if (totalCounties[index].name ==
+                                                noneName) {
+                                              selectedDetailsForCountry.value =
+                                                  emptyCountry;
+                                              value.value = emptyCountry;
+                                            } else {
+                                              selectedDetailsForCountry.value =
+                                                  totalCounties[index];
+                                              value.value =
+                                                  totalCounties[index];
+                                            }
+                                            debugPrint(value.value.name);
+                                            totalStates = [];
+                                            loadStateData(
+                                                selectedDetailsForCountry1:
+                                                    value);
+                                            totalCities = [];
+                                            loadCityData();
+                                            countryFilter.clear();
+                                            selectedDetailsForState.value =
+                                                StateModel();
+                                            selectedDetailsForCity.value =
+                                                CityModel();
+                                            Navigator.pop(context);
+                                          },
+                                          splashColor: Colors.blue,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10.0, horizontal: 10),
+                                            child: Text(
+                                                totalCounties[index].name ??
+                                                    &quot;&quot;),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+            ],
+          );
+        });
+      });
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">country_picker_bkb</a></li>
+    <li><a href="../country_picker_bkb/country_picker_bkb-library.html">country_picker_bkb</a></li>
+    <li class="self-crumb">countrySelect function</li>
+</ol>
+
+
+    <h5>country_picker_bkb library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    country_picker_bkb
+      1.0.5
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+
+
+</body>
+
+</html>
+

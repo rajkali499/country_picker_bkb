@@ -25,9 +25,9 @@ class _CountryPickerState extends State<CountryPicker> {
   @override
   void initState() {
     // TODO: implement initState
-      loadCountryData();
-      loadStateData();
-      loadCityData();
+    loadCountryData();
+    loadStateData();
+    loadCityData();
     super.initState();
   }
 
@@ -44,15 +44,15 @@ class _CountryPickerState extends State<CountryPicker> {
               const SizedBox(
                 height: 20,
               ),
-              Country(),
+              const Country(),
               const SizedBox(
                 height: 20,
               ),
-              StatePicker(),
+              const StatePicker(),
               const SizedBox(
                 height: 20,
               ),
-              City(),
+              const City(),
               const SizedBox(
                 height: 20,
               ),
@@ -65,7 +65,14 @@ class _CountryPickerState extends State<CountryPicker> {
   }
 }
 
-citySelect(BuildContext context, Offset buttonPosition, Size buttonSize,ValueNotifier<City_Model> value) {
+citySelect(
+    BuildContext context,
+    Offset buttonPosition,
+    Size buttonSize,
+    ValueNotifier<CityModel> value,
+    ValueNotifier<CountryModel> country,
+    ValueNotifier<StateModel> state) {
+  loadCityData(state: state, country: country);
   showDialog(
       barrierColor: Colors.transparent,
       context: context,
@@ -96,129 +103,8 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize,ValueNot
                                     cityFilter.text = val;
                                   });
                                   cityFilter.selection =
-                                      TextSelection.fromPosition(
-                                          TextPosition(
-                                              offset: cityFilter
-                                                  .text.length));
-                                  filterCity();
-                                },
-                                decoration:  InputDecoration(
-                                  hintText: "Search city",
-                                  suffixIcon: const Icon(Icons.search),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: cityFilter.text.isNotEmpty
-                                  ? ListView(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 10,
-                                        vertical: 10,
-                                      ),
-                                      shrinkWrap: true,
-                                      children: filteredCity
-                                          .map((element) => InkWell(
-                                                onTap: () {
-                                                  if (element.name ==
-                                                      noneName) {
-                                                    selectedDetailsForCity
-                                                        .value = emptyCity;
-                                                    value.value = emptyCity;
-                                                  } else {
-                                                    selectedDetailsForCity
-                                                        .value = element;
-                                                    value.value = element;
-                                                  }
-                                                  print(value.value.name);
-                                                  cityFilter.clear();
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Padding(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      vertical: 10.0),
-                                                  child:
-                                                      Text(element.name ?? ""),
-                                                ),
-                                              ))
-                                          .toList(),
-                                    )
-                                  : totalCities.isEmpty
-                                      ? const Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 10.0),
-                                          child: Text("No City Available"),
-                                        )
-                                      : ListView.builder(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 10,
-                                            vertical: 10,
-                                          ),
-                                          itemCount: totalCities.length,
-                                          shrinkWrap: true,
-                                          itemBuilder: (context, int index) {
-                                            return InkWell(
-                                              onTap: () {
-                                                if (totalCities[index].name ==
-                                                    noneName) {
-                                                  selectedDetailsForCity.value =
-                                                      emptyCity;
-                                                  value.value = emptyCity;
-                                                } else {
-                                                  selectedDetailsForCity.value =
-                                                      totalCities[index];
-                                                  value.value =
-                                                      totalCities[index];
-                                                }
-                                                print(value.value.name);
-                                                cityFilter.clear();
-                                                Navigator.pop(context);
-                                              },
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 10.0),
-                                                child: Text(
-                                                    totalCities[index].name ??
-                                                        ""),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                  : Positioned(
-                      top: buttonPosition.dy,
-                      left: buttonPosition.dx,
-                      width: buttonSize.width,
-                      height: MediaQuery.of(context).size.height -
-                          buttonPosition.dy -
-                          100,
-                      child: Material(
-                        elevation: 3,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextFormField(
-                                controller: cityFilter,
-                                onChanged: (val) {
-                                  refresh(() {
-                                    cityFilter.text = val;
-                                  });
-                                  cityFilter.selection =
-                                      TextSelection.fromPosition(
-                                          TextPosition(
-                                              offset: cityFilter
-                                                  .text.length));
+                                      TextSelection.fromPosition(TextPosition(
+                                          offset: cityFilter.text.length));
                                   filterCity();
                                 },
                                 decoration: InputDecoration(
@@ -226,8 +112,7 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize,ValueNot
                                     suffixIcon: const Icon(Icons.search),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
-                                    )
-                                ),
+                                    )),
                               ),
                             ),
                             Expanded(
@@ -251,13 +136,13 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize,ValueNot
                                                         .value = element;
                                                     value.value = element;
                                                   }
-                                                  print(value.value.name);
+                                                  debugPrint(value.value.name);
                                                   cityFilter.clear();
                                                   Navigator.pop(context);
                                                 },
                                                 child: Padding(
                                                   padding: const EdgeInsets
-                                                          .symmetric(
+                                                      .symmetric(
                                                       vertical: 10.0),
                                                   child:
                                                       Text(element.name ?? ""),
@@ -292,7 +177,123 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize,ValueNot
                                                   value.value =
                                                       totalCities[index];
                                                 }
-                                                print(value.value.name);
+                                                debugPrint(value.value.name);
+                                                cityFilter.clear();
+                                                Navigator.pop(context);
+                                              },
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 10.0),
+                                                child: Text(
+                                                    totalCities[index].name ??
+                                                        ""),
+                                              ),
+                                            );
+                                          },
+                                        ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  : Positioned(
+                      top: buttonPosition.dy,
+                      left: buttonPosition.dx,
+                      width: buttonSize.width,
+                      height: MediaQuery.of(context).size.height -
+                          buttonPosition.dy -
+                          100,
+                      child: Material(
+                        elevation: 3,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                controller: cityFilter,
+                                onChanged: (val) {
+                                  refresh(() {
+                                    cityFilter.text = val;
+                                  });
+                                  cityFilter.selection =
+                                      TextSelection.fromPosition(TextPosition(
+                                          offset: cityFilter.text.length));
+                                  filterCity();
+                                },
+                                decoration: InputDecoration(
+                                    hintText: "Search city",
+                                    suffixIcon: const Icon(Icons.search),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    )),
+                              ),
+                            ),
+                            Expanded(
+                              child: cityFilter.text.isNotEmpty
+                                  ? ListView(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 10,
+                                        vertical: 10,
+                                      ),
+                                      shrinkWrap: true,
+                                      children: filteredCity
+                                          .map((element) => InkWell(
+                                                onTap: () {
+                                                  if (element.name ==
+                                                      noneName) {
+                                                    selectedDetailsForCity
+                                                        .value = emptyCity;
+                                                    value.value = emptyCity;
+                                                  } else {
+                                                    selectedDetailsForCity
+                                                        .value = element;
+                                                    value.value = element;
+                                                  }
+                                                  debugPrint(value.value.name);
+                                                  cityFilter.clear();
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                      vertical: 10.0),
+                                                  child:
+                                                      Text(element.name ?? ""),
+                                                ),
+                                              ))
+                                          .toList(),
+                                    )
+                                  : totalCities.isEmpty
+                                      ? const Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 10.0),
+                                          child: Text("No City Available"),
+                                        )
+                                      : ListView.builder(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 10,
+                                            vertical: 10,
+                                          ),
+                                          itemCount: totalCities.length,
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, int index) {
+                                            return InkWell(
+                                              onTap: () {
+                                                if (totalCities[index].name ==
+                                                    noneName) {
+                                                  selectedDetailsForCity.value =
+                                                      emptyCity;
+                                                  value.value = emptyCity;
+                                                } else {
+                                                  selectedDetailsForCity.value =
+                                                      totalCities[index];
+                                                  value.value =
+                                                      totalCities[index];
+                                                }
+                                                debugPrint(value.value.name);
                                                 cityFilter.clear();
                                                 Navigator.pop(context);
                                               },
@@ -318,7 +319,13 @@ citySelect(BuildContext context, Offset buttonPosition, Size buttonSize,ValueNot
       });
 }
 
-stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize, ValueNotifier<State_Model> value) {
+stateSelect(
+    BuildContext context,
+    Offset buttonPosition,
+    Size buttonSize,
+    ValueNotifier<StateModel> value,
+    ValueNotifier<CountryModel> selectedCountry) {
+  loadStateData(selectedDetailsForCountry1: selectedCountry);
   showDialog(
       barrierColor: Colors.transparent,
       context: context,
@@ -349,10 +356,8 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize, ValueN
                                     stateFilter.text = val;
                                   });
                                   stateFilter.selection =
-                                      TextSelection.fromPosition(
-                                          TextPosition(
-                                              offset: stateFilter
-                                                  .text.length));
+                                      TextSelection.fromPosition(TextPosition(
+                                          offset: stateFilter.text.length));
                                   filterState();
                                 },
                                 decoration: InputDecoration(
@@ -360,8 +365,7 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize, ValueN
                                     suffixIcon: const Icon(Icons.search),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
-                                    )
-                                ),
+                                    )),
                               ),
                             ),
                             Expanded(
@@ -385,17 +389,17 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize, ValueN
                                                         .value = element;
                                                     value.value = element;
                                                   }
-                                                  print(value.value.name);
+                                                  debugPrint(value.value.name);
                                                   totalCities = [];
                                                   loadCityData();
                                                   selectedDetailsForCity.value =
-                                                      City_Model();
+                                                      CityModel();
                                                   stateFilter.clear();
                                                   Navigator.pop(context);
                                                 },
                                                 child: Padding(
                                                   padding: const EdgeInsets
-                                                          .symmetric(
+                                                      .symmetric(
                                                       vertical: 10.0),
                                                   child:
                                                       Text(element.name ?? ""),
@@ -431,11 +435,11 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize, ValueN
                                                   value.value =
                                                       totalStates[index];
                                                 }
-                                                print(value.value.name);
+                                                debugPrint(value.value.name);
                                                 totalCities = [];
                                                 loadCityData();
                                                 selectedDetailsForCity.value =
-                                                    City_Model();
+                                                    CityModel();
                                                 stateFilter.clear();
                                                 Navigator.pop(context);
                                               },
@@ -477,10 +481,8 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize, ValueN
                                     stateFilter.text = val;
                                   });
                                   stateFilter.selection =
-                                      TextSelection.fromPosition(
-                                          TextPosition(
-                                              offset: stateFilter
-                                                  .text.length));
+                                      TextSelection.fromPosition(TextPosition(
+                                          offset: stateFilter.text.length));
                                   filterState();
                                 },
                                 decoration: InputDecoration(
@@ -488,8 +490,7 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize, ValueN
                                     suffixIcon: const Icon(Icons.search),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
-                                    )
-                                ),
+                                    )),
                               ),
                             ),
                             Expanded(
@@ -513,17 +514,17 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize, ValueN
                                                         .value = element;
                                                     value.value = element;
                                                   }
-                                                  print(value.value.name);
+                                                  debugPrint(value.value.name);
                                                   totalCities = [];
                                                   loadCityData();
                                                   selectedDetailsForCity.value =
-                                                      City_Model();
+                                                      CityModel();
                                                   stateFilter.clear();
                                                   Navigator.pop(context);
                                                 },
                                                 child: Padding(
                                                   padding: const EdgeInsets
-                                                          .symmetric(
+                                                      .symmetric(
                                                       vertical: 10.0),
                                                   child:
                                                       Text(element.name ?? ""),
@@ -559,11 +560,11 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize, ValueN
                                                   value.value =
                                                       totalStates[index];
                                                 }
-                                                print(value.value.name);
+                                                debugPrint(value.value.name);
                                                 totalCities = [];
                                                 loadCityData();
                                                 selectedDetailsForCity.value =
-                                                    City_Model();
+                                                    CityModel();
                                                 stateFilter.clear();
                                                 Navigator.pop(context);
                                               },
@@ -589,7 +590,8 @@ stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize, ValueN
       });
 }
 
-countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,ValueNotifier<Country_Model> value) {
+countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,
+    ValueNotifier<CountryModel> value) {
   showDialog(
       barrierColor: Colors.transparent,
       context: context,
@@ -620,10 +622,8 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,Value
                                     countryFilter.text = val;
                                   });
                                   countryFilter.selection =
-                                      TextSelection.fromPosition(
-                                          TextPosition(
-                                              offset: countryFilter
-                                                  .text.length));
+                                      TextSelection.fromPosition(TextPosition(
+                                          offset: countryFilter.text.length));
                                   filterCountry();
                                 },
                                 decoration: InputDecoration(
@@ -631,8 +631,7 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,Value
                                     suffixIcon: const Icon(Icons.search),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
-                                    )
-                                ),
+                                    )),
                               ),
                             ),
                             Expanded(
@@ -654,16 +653,18 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,Value
                                                       .value = element;
                                                   value.value = element;
                                                 }
-                                                print(value.value.name);
+                                                debugPrint(value.value.name);
                                                 totalStates = [];
-                                                loadStateData();
+                                                loadStateData(
+                                                    selectedDetailsForCountry1:
+                                                        value);
                                                 totalCities = [];
                                                 loadCityData();
                                                 countryFilter.clear();
                                                 selectedDetailsForState.value =
-                                                    State_Model();
+                                                    StateModel();
                                                 selectedDetailsForCity.value =
-                                                    City_Model();
+                                                    CityModel();
                                                 Navigator.pop(context);
                                               },
                                               splashColor: Colors.blue,
@@ -697,16 +698,18 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,Value
                                               value.value =
                                                   totalCounties[index];
                                             }
-                                            print(value.value.name);
+                                            debugPrint(value.value.name);
                                             totalStates = [];
-                                            loadStateData();
+                                            loadStateData(
+                                                selectedDetailsForCountry1:
+                                                    value);
                                             totalCities = [];
                                             loadCityData();
                                             countryFilter.clear();
                                             selectedDetailsForState.value =
-                                                State_Model();
+                                                StateModel();
                                             selectedDetailsForCity.value =
-                                                City_Model();
+                                                CityModel();
                                             Navigator.pop(context);
                                           },
                                           splashColor: Colors.blue,
@@ -747,10 +750,8 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,Value
                                     countryFilter.text = val;
                                   });
                                   countryFilter.selection =
-                                      TextSelection.fromPosition(
-                                          TextPosition(
-                                              offset: countryFilter
-                                                  .text.length));
+                                      TextSelection.fromPosition(TextPosition(
+                                          offset: countryFilter.text.length));
                                   filterCountry();
                                 },
                                 decoration: InputDecoration(
@@ -758,8 +759,7 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,Value
                                     suffixIcon: const Icon(Icons.search),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
-                                    )
-                                ),
+                                    )),
                               ),
                             ),
                             Expanded(
@@ -781,16 +781,18 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,Value
                                                       .value = element;
                                                   value.value = element;
                                                 }
-                                                print(value.value.name);
+                                                debugPrint(value.value.name);
                                                 totalStates = [];
-                                                loadStateData();
+                                                loadStateData(
+                                                    selectedDetailsForCountry1:
+                                                        value);
                                                 totalCities = [];
                                                 loadCityData();
                                                 countryFilter.clear();
                                                 selectedDetailsForState.value =
-                                                    State_Model();
+                                                    StateModel();
                                                 selectedDetailsForCity.value =
-                                                    City_Model();
+                                                    CityModel();
                                                 Navigator.pop(context);
                                               },
                                               splashColor: Colors.blue,
@@ -824,16 +826,18 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,Value
                                               value.value =
                                                   totalCounties[index];
                                             }
-                                            print(value.value.name);
+                                            debugPrint(value.value.name);
                                             totalStates = [];
-                                            loadStateData();
+                                            loadStateData(
+                                                selectedDetailsForCountry1:
+                                                    value);
                                             totalCities = [];
                                             loadCityData();
                                             countryFilter.clear();
                                             selectedDetailsForState.value =
-                                                State_Model();
+                                                StateModel();
                                             selectedDetailsForCity.value =
-                                                City_Model();
+                                                CityModel();
                                             Navigator.pop(context);
                                           },
                                           splashColor: Colors.blue,
@@ -858,7 +862,8 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,Value
       });
 }
 
-phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,ValueNotifier<Country_Model> value) {
+phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
+    ValueNotifier<CountryModel> value) {
   showDialog(
       barrierColor: Colors.transparent,
       context: context,
@@ -890,10 +895,8 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,Val
                                     phoneCodeFilter.text = val;
                                   });
                                   phoneCodeFilter.selection =
-                                      TextSelection.fromPosition(
-                                          TextPosition(
-                                              offset: phoneCodeFilter
-                                                  .text.length));
+                                      TextSelection.fromPosition(TextPosition(
+                                          offset: phoneCodeFilter.text.length));
                                   filterPhoneCode();
                                 },
                                 decoration: InputDecoration(
@@ -901,8 +904,7 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,Val
                                     suffixIcon: const Icon(Icons.search),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
-                                    )
-                                ),
+                                    )),
                               ),
                             ),
                             Expanded(
@@ -924,13 +926,13 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,Val
                                                         .value = element;
                                                     value.value = element;
                                                   }
-                                                  print(value.value.dialCode);
+                                                  debugPrint(value.value.dialCode);
                                                   phoneCodeFilter.clear();
                                                   Navigator.pop(context);
                                                 },
                                                 child: Padding(
                                                   padding: const EdgeInsets
-                                                          .symmetric(
+                                                      .symmetric(
                                                       vertical: 10.0),
                                                   child: Wrap(
                                                     spacing: 8,
@@ -982,7 +984,7 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,Val
                                               value.value =
                                                   totalCounties[index];
                                             }
-                                            print(value.value.dialCode);
+                                            debugPrint(value.value.dialCode);
                                             phoneCodeFilter.clear();
                                             Navigator.pop(context);
                                           },
@@ -1050,10 +1052,8 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,Val
                                     phoneCodeFilter.text = val;
                                   });
                                   phoneCodeFilter.selection =
-                                      TextSelection.fromPosition(
-                                          TextPosition(
-                                              offset: phoneCodeFilter
-                                                  .text.length));
+                                      TextSelection.fromPosition(TextPosition(
+                                          offset: phoneCodeFilter.text.length));
                                   filterPhoneCode();
                                 },
                                 decoration: InputDecoration(
@@ -1061,8 +1061,7 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,Val
                                     suffixIcon: const Icon(Icons.search),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
-                                    )
-                                ),
+                                    )),
                               ),
                             ),
                             Expanded(
@@ -1084,13 +1083,13 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,Val
                                                         .value = element;
                                                     value.value = element;
                                                   }
-                                                  print(value.value.dialCode);
+                                                  debugPrint(value.value.dialCode);
                                                   phoneCodeFilter.clear();
                                                   Navigator.pop(context);
                                                 },
                                                 child: Padding(
                                                   padding: const EdgeInsets
-                                                          .symmetric(
+                                                      .symmetric(
                                                       vertical: 10.0),
                                                   child: Wrap(
                                                     spacing: 8,
@@ -1142,7 +1141,7 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,Val
                                               value.value =
                                                   totalCounties[index];
                                             }
-                                            print(value.value.dialCode);
+                                            debugPrint(value.value.dialCode);
                                             phoneCodeFilter.clear();
                                             Navigator.pop(context);
                                           },
@@ -1194,94 +1193,103 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,Val
 }
 
 Future<dynamic> loadCountryData() async {
-  var res = await rootBundle.loadString(
-      'packages/country_picker_bkb/lib/assets/json/$jsonPath');
+  var res = await rootBundle
+      .loadString('packages/country_picker_bkb/lib/assets/json/$jsonPath');
   var countryDetail = jsonDecode(res);
   // Country_Model country_model=Country_Model.fromJson(jsonDecode(res;
-  totalCounties=[noneCountry];
+  totalCounties = [noneCountry];
   countryDetail.forEach((element) {
-    totalCounties.add(Country_Model.fromJson(element));
+    totalCounties.add(CountryModel.fromJson(element));
   });
-  print(totalCounties.length);
+  debugPrint(totalCounties.length.toString());
 }
 
-Future<dynamic> loadStateData() async {
-  var res = await rootBundle.loadString(
-      'packages/country_picker_bkb/lib/assets/json/$jsonPath');
+Future<dynamic> loadStateData(
+    {ValueNotifier<CountryModel>? selectedDetailsForCountry1}) async {
+  var res = await rootBundle
+      .loadString('packages/country_picker_bkb/lib/assets/json/$jsonPath');
   var countryDetail = jsonDecode(res);
   // Country_Model country_model=Country_Model.fromJson(jsonDecode(res;
-  if (selectedDetailsForCountry.value.name != null) {
-    totalStates=[noneState];
+  if ((selectedDetailsForCountry1 ?? selectedDetailsForCountry).value.name !=
+      null) {
+    totalStates = [noneState];
     countryDetail.forEach((element) {
-      if (element['name'] == selectedDetailsForCountry.value.name) {
+      if (element['name'] ==
+          (selectedDetailsForCountry1 ?? selectedDetailsForCountry)
+              .value
+              .name) {
         element['state'].forEach((value) {
-          totalStates.add(State_Model.fromJson(value));
+          totalStates.add(StateModel.fromJson(value));
         });
       }
     });
   } else {
-    totalStates=[noneState];
+    totalStates = [noneState];
     countryDetail.forEach((element) {
       element['state'].forEach((value) {
-        totalStates.add(State_Model.fromJson(value));
+        totalStates.add(StateModel.fromJson(value));
       });
     });
   }
-  print(totalStates.length);
+  debugPrint(totalStates.length.toString());
 }
 
-Future<dynamic> loadCityData() async {
-  var res = await rootBundle.loadString(
-      'packages/country_picker_bkb/lib/assets/json/$jsonPath');
+Future<dynamic> loadCityData(
+    {ValueNotifier<CountryModel>? country,
+    ValueNotifier<StateModel>? state}) async {
+  var res = await rootBundle
+      .loadString('packages/country_picker_bkb/lib/assets/json/$jsonPath');
   var countryDetail = jsonDecode(res);
   // Country_Model country_model=Country_Model.fromJson(jsonDecode(res;
-  if (selectedDetailsForCountry.value.name != null &&
-      selectedDetailsForState.value.name != null) {
-    totalCities=[noneCity];
+  if ((country ?? selectedDetailsForCountry).value.name != null &&
+      (state ?? selectedDetailsForState).value.name != null) {
+    totalCities = [noneCity];
     countryDetail.forEach((element) {
-      if (element['name'] == selectedDetailsForCountry.value.name) {
+      if (element['name'] ==
+          (country ?? selectedDetailsForCountry).value.name) {
         element['state'].forEach((value) {
-          if (selectedDetailsForState.value.name == value['name']) {
+          if ((state ?? selectedDetailsForState).value.name == value['name']) {
             value['city'].forEach((data) {
-              totalCities.add(City_Model.fromJson(data));
+              totalCities.add(CityModel.fromJson(data));
             });
           }
         });
       }
     });
-  } else if (selectedDetailsForCountry.value.name != null) {
-    totalCities=[noneCity];
+  } else if ((country ?? selectedDetailsForCountry).value.name != null) {
+    totalCities = [noneCity];
     countryDetail.forEach((element) {
-      if (element['name'] == selectedDetailsForCountry.value.name) {
+      if (element['name'] ==
+          (country ?? selectedDetailsForCountry).value.name) {
         element['state'].forEach((value) {
           value['city'].forEach((data) {
-            totalCities.add(City_Model.fromJson(data));
+            totalCities.add(CityModel.fromJson(data));
           });
         });
       }
     });
-  } else if (selectedDetailsForState.value.name != null) {
-    totalCities=[];
+  } else if ((state ?? selectedDetailsForState).value.name != null) {
+    totalCities = [];
     countryDetail.forEach((element) {
       element['state'].forEach((value) {
-        if (selectedDetailsForState.value.name == value['name']) {
+        if ((state ?? selectedDetailsForState).value.name == value['name']) {
           value['city'].forEach((data) {
-            totalCities.add(City_Model.fromJson(data));
+            totalCities.add(CityModel.fromJson(data));
           });
         }
       });
     });
   } else {
-    totalCities=[];
+    totalCities = [];
     countryDetail.forEach((element) {
       element['state'].forEach((value) {
         value['city'].forEach((data) {
-          totalCities.add(City_Model.fromJson(data));
+          totalCities.add(CityModel.fromJson(data));
         });
       });
     });
   }
-  print(totalCities.length);
+  debugPrint(totalCities.length.toString());
 }
 
 filterPhoneCode() {

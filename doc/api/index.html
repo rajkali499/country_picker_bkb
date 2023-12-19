@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 8.0.3">
+  <meta name="description" content="country_picker_bkb API docs, for the Dart programming language.">
+  <title>country_picker_bkb - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="" data-using-base-href="false" class="light-theme">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://github.com/rajkali499/country_picker_bkb.git">country_picker_bkb package</a></li>
+  </ol>
+  <div class="self-name">country_picker_bkb</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <!--
+This README describes the package. If you publish this package to pub.dev,
+this README's contents appear on the landing page for your package.
+
+For information about how to write a good package README, see the guide for
+[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+
+For general information about developing packages, see the Dart guide for
+[creating packages](https://dart.dev/guides/libraries/create-library-packages)
+and the Flutter guide for
+[developing packages and plugins](https://flutter.dev/developing-packages).
+-->
+<h2 id="features">Features</h2>
+<p>-&gt; This package is used for country, state, city, dial code picker
+-&gt; we can select the details with respective of other details and can be irrespective also. which means we can select the
+country , state, city alone by using search and if we use the country, state, city pickers together then It will show the data
+dependent to that selected data. for Example If we choose country then the state and city will be loaded and will show the
+details of state and city inside that country. If we choose country and state both then the city details will be based on the
+country and state only
+<img src="https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984848114.JPEG" alt="Country_Picker_BKB">
+<img src="https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984849131.JPEG" alt="Select CountryCode">
+<img src="https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984848469.JPEG" alt="Select Country">
+<img src="https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984849674.JPEG" alt="Select State">
+<img src="https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984847859.JPEG" alt="Select City"></p>
+<h2 id="getting-started">Getting started</h2>
+<p>-&gt; add the following in your dependencies of pubspec.yaml file</p>
+<pre class="language-dart"><code>country_picker_bkb: version
+</code></pre>
+<p>-&gt; run the following</p>
+<pre class="language-dart"><code>flutter pun get
+</code></pre>
+<p>-&gt; import the package in the file you want to use</p>
+<pre class="language-dart"><code>import 'package:country_picker_bkb/country_picker_bkb.dart';
+</code></pre>
+<p>-&gt; you can use the package in your project</p>
+<h2 id="usage">Usage</h2>
+<pre class="language-dart"><code class="language-dart">CountryPicker();
+</code></pre>
+<p>you can use this one as a widget for Country, state, city, dial code picker in a column or else you can use the following
+to use each alone</p>
+<pre class="language-dart"><code class="language-dart">MobileNumberCode(required textEditingController);
+Country();
+StatePicker();
+City();
+</code></pre>
+<p>the above will store the selected details in the following value Notifiers respectively;</p>
+<pre class="language-dart"><code class="language-dart">ValueNotifier&lt;Country_Model&gt; selectedCountryDetailsForPhoneCode=ValueNotifier(Country_Model());
+
+ValueNotifier&lt;Country_Model&gt; selectedDetailsForCountry=ValueNotifier(Country_Model());
+
+ValueNotifier&lt;State_Model&gt; selectedDetailsForState=ValueNotifier(State_Model());
+
+ValueNotifier&lt;City_Model&gt; selectedDetailsForCity=ValueNotifier(City_Model());
+</code></pre>
+<p>we can access the selected details by using the above variables</p>
+<pre class="language-dart"><code class="language-dart">stateSelect(context, buttonPosition, buttonSize,stateSelectionValueNotifier,countrySelectionValueNotifier);
+countrySelect(context, buttonPosition, buttonSize,countrySelectionValueNotifier);
+citySelect(context, buttonPosition, buttonSize,city,countrySelectionValueNotifier,stateSelectionValueNotifier,);
+
+</code></pre>
+<p>Certainly! Here's a modified version of the statement for clarity:</p>
+<p>Now, it's possible to simultaneously use multiple instances of the country, state, and city pickers by passing their respective <code>ValueNotifier</code> to the function. When calling the above functions (<code>stateSelect</code>, <code>countrySelect</code>, and <code>citySelect</code>), ensure to provide the <code>stateSelectionValueNotifier</code> and <code>countrySelectionValueNotifier</code> as arguments. These <code>ValueNotifier</code> variables store the selected values independently for each picker.</p>
+<h2 id="additional-information">Additional information</h2>
+<p>Refer the git for more details. you can use the following link 'https://github.com/rajkali499/country_picker_bkb.git'. Comment
+for the updates if needed on this packages</p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="city">
+  <span class="name"><a href="widgets_city/widgets_city-library.html">widgets/city</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="country">
+  <span class="name"><a href="widgets_country/widgets_country-library.html">widgets/country</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="country_model">
+  <span class="name"><a href="model_country_model/model_country_model-library.html">model/country_model</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="country_picker_bkb">
+  <span class="name"><a href="country_picker_bkb/country_picker_bkb-library.html">country_picker_bkb</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="mobile_number_code_picker">
+  <span class="name"><a href="widgets_mobile_number_code_picker/widgets_mobile_number_code_picker-library.html">widgets/mobile_number_code_picker</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="state">
+  <span class="name"><a href="widgets_state/widgets_state-library.html">widgets/state</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="utils">
+  <span class="name"><a href="utils/utils-library.html">utils</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+        </dl>
+      </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="https://github.com/rajkali499/country_picker_bkb.git">country_picker_bkb package</a></li>
+</ol>
+
+
+    <h5 class="hidden-xs"><span class="package-name">country_picker_bkb</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="widgets_city/widgets_city-library.html">widgets/city</a></li>
+      <li><a href="widgets_country/widgets_country-library.html">widgets/country</a></li>
+      <li><a href="model_country_model/model_country_model-library.html">model/country_model</a></li>
+      <li><a href="country_picker_bkb/country_picker_bkb-library.html">country_picker_bkb</a></li>
+      <li><a href="widgets_mobile_number_code_picker/widgets_mobile_number_code_picker-library.html">widgets/mobile_number_code_picker</a></li>
+      <li><a href="widgets_state/widgets_state-library.html">widgets/state</a></li>
+      <li><a href="utils/utils-library.html">utils</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    country_picker_bkb
+      1.0.5
+  </span>
+
+  
+</footer>
+
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/docs.dart.js"></script>
+
+
+
+</body>
+
+</html>
+

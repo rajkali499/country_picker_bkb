@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class City extends StatefulWidget {
-  Widget? child;
-  EdgeInsets? padding;
-  double? height;
-  double? width;
-  Color? color;
-  Decoration? decoration;
+  final Widget? child;
+  final EdgeInsets? padding;
+  final double? height;
+  final double? width;
+  final Color? color;
+  final Decoration? decoration;
 
-  City(
+  const City(
       {Key? key,
       this.child,
       this.decoration,
@@ -31,7 +31,7 @@ class _CityState extends State<City> {
   late Size buttonSize;
   late Offset buttonPosition;
 
-  ValueNotifier<City_Model> city=ValueNotifier(City_Model());
+  ValueNotifier<CityModel> city=ValueNotifier(CityModel());
 
   @override
   void initState() {
@@ -54,7 +54,7 @@ class _CityState extends State<City> {
     return InkWell(
       onTap: () {
         findButton();
-        citySelect(context, buttonPosition, buttonSize,city);
+        citySelect(context, buttonPosition, buttonSize,city,selectedDetailsForCountry,selectedDetailsForState,);
       },
       child: widget.child ??
           Container(
@@ -69,7 +69,7 @@ class _CityState extends State<City> {
                 ),
             child: ValueListenableBuilder(
                 valueListenable: selectedDetailsForCity,
-                builder: (context, City_Model selectedCity, child) {
+                builder: (context, CityModel selectedCity, child) {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

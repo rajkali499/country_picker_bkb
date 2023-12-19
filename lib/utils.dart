@@ -4,13 +4,13 @@ import 'model/country_model.dart';
 
 const noneName = "None";
 
-final noneCountry = Country_Model(name: noneName);
-final noneState = State_Model(name: noneName);
-final noneCity = City_Model(name: noneName);
+final noneCountry = CountryModel(name: noneName);
+final noneState = StateModel(name: noneName);
+final noneCity = CityModel(name: noneName);
 
-final emptyCountry = Country_Model();
-final emptyState = State_Model();
-final emptyCity = City_Model();
+final emptyCountry = CountryModel();
+final emptyState = StateModel();
+final emptyCity = CityModel();
 
 const jsonPath = 'country_details_minified.json';
 
@@ -272,27 +272,27 @@ var flags = {
   "ZW": "packages/country_picker_bkb/lib/assets/svg/zw.svg",
 };
 
-ValueNotifier<Country_Model> selectedCountryDetailsForPhoneCode=ValueNotifier(Country_Model());
+ValueNotifier<CountryModel> selectedCountryDetailsForPhoneCode=ValueNotifier(CountryModel());
 
-ValueNotifier<Country_Model> selectedDetailsForCountry=ValueNotifier(Country_Model());
+ValueNotifier<CountryModel> selectedDetailsForCountry = ValueNotifier(CountryModel());
 
-ValueNotifier<State_Model> selectedDetailsForState=ValueNotifier(State_Model());
+ValueNotifier<StateModel> selectedDetailsForState=ValueNotifier(StateModel());
 
-ValueNotifier<City_Model> selectedDetailsForCity=ValueNotifier(City_Model());
+ValueNotifier<CityModel> selectedDetailsForCity=ValueNotifier(CityModel());
 
-List<Country_Model> totalCounties = [];
+List<CountryModel> totalCounties = [];
 
-List<State_Model> totalStates= [];
+List<StateModel> totalStates= [];
 
-List<City_Model> totalCities= [];
+List<CityModel> totalCities= [];
 
-List<Country_Model> filteredCountriesForCode=[];
+List<CountryModel> filteredCountriesForCode=[];
 
-List<Country_Model> filteredCountries=[];
+List<CountryModel> filteredCountries=[];
 
-List<State_Model> filteredState=[];
+List<StateModel> filteredState=[];
 
-List<City_Model> filteredCity=[];
+List<CityModel> filteredCity=[];
 
 TextEditingController phoneCodeFilter = TextEditingController();
 TextEditingController countryFilter=TextEditingController();

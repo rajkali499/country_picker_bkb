@@ -18,8 +18,12 @@ country , state, city alone by using search and if we use the country, state, ci
 dependent to that selected data. for Example If we choose country then the state and city will be loaded and will show the 
 details of state and city inside that country. If we choose country and state both then the city details will be based on the 
 country and state only
+![Country_Picker_BKB](https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984848114.JPEG)
+![Select CountryCode](https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984849131.JPEG)
+![Select Country](https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984848469.JPEG)
+![Select State](https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984849674.JPEG)
+![Select City](https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984847859.JPEG)
 
-![](C:/Users/softsuave/Desktop/Screenshot_1670832771.png)![](C:/Users/softsuave/Desktop/Screenshot_1670832774.png)![](C:/Users/softsuave/Desktop/Screenshot_1670832759.png)![](C:/Users/softsuave/Desktop/Screenshot_1670832765.png)
 
 ## Getting started
 
@@ -65,8 +69,16 @@ ValueNotifier<City_Model> selectedDetailsForCity=ValueNotifier(City_Model());
 ```
 
 we can access the selected details by using the above variables
+```dart
+stateSelect(context, buttonPosition, buttonSize,stateSelectionValueNotifier,countrySelectionValueNotifier);
+countrySelect(context, buttonPosition, buttonSize,countrySelectionValueNotifier);
+citySelect(context, buttonPosition, buttonSize,city,countrySelectionValueNotifier,stateSelectionValueNotifier,);
 
+```
 
+Certainly! Here's a modified version of the statement for clarity:
+
+Now, it's possible to simultaneously use multiple instances of the country, state, and city pickers by passing their respective `ValueNotifier` to the function. When calling the above functions (`stateSelect`, `countrySelect`, and `citySelect`), ensure to provide the `stateSelectionValueNotifier` and `countrySelectionValueNotifier` as arguments. These `ValueNotifier` variables store the selected values independently for each picker.
 ## Additional information
 
 Refer the git for more details. you can use the following link 'https://github.com/rajkali499/country_picker_bkb.git'. Comment 

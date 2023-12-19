@@ -1,19 +1,18 @@
 import 'package:country_picker_bkb/model/country_model.dart';
-import 'package:country_picker_bkb/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../country_picker_bkb.dart';
 
 class Country extends StatefulWidget {
-  Widget? child;
-  EdgeInsets? padding;
-  double? height;
-  double? width;
-  Color? color;
-  Decoration? decoration;
+  final Widget? child;
+  final EdgeInsets? padding;
+  final double? height;
+  final double? width;
+  final Color? color;
+  final Decoration? decoration;
 
-  Country(
+  const Country(
       {Key? key,
       this.child,
       this.decoration,
@@ -32,7 +31,7 @@ class _CountryState extends State<Country> {
   late Size buttonSize;
   late Offset buttonPosition;
 
-  ValueNotifier<Country_Model> country= ValueNotifier(Country_Model());
+  ValueNotifier<CountryModel> country= ValueNotifier(CountryModel());
 
   @override
   void initState() {
@@ -69,8 +68,8 @@ class _CountryState extends State<Country> {
                   color: widget.color ?? Colors.white,
                 ),
             child: ValueListenableBuilder(
-                valueListenable: selectedDetailsForCountry,
-                builder: (context, Country_Model selectedCountry, child) {
+                valueListenable: (country),
+                builder: (context, CountryModel selectedCountry, child) {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

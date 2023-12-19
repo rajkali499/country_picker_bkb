@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
 
    late Offset buttonPosition;
 
-   ValueNotifier<Country_Model> country=ValueNotifier(Country_Model());
+   ValueNotifier<CountryModel> country=ValueNotifier(CountryModel());
 
    TextEditingController textEditingController = TextEditingController();
 
