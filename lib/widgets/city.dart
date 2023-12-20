@@ -59,8 +59,8 @@ class _CityState extends State<City> {
           buttonPosition,
           buttonSize,
           city,
-          country:selectedDetailsForCountry,
-          state:selectedDetailsForState,
+          country: selectedDetailsForCountry,
+          state: selectedDetailsForState,
         );
       },
       child: widget.child ??
