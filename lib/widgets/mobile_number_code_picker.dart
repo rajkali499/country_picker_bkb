@@ -30,7 +30,9 @@ class MobileNumberCode extends StatefulWidget {
     required this.textEditingController,
     this.keyBoardType,
     this.textFieldDecoration,
-    this.child, this.onChanged, this.validator,
+    this.child,
+    this.onChanged,
+    this.validator,
   }) : super(key: key);
 
   @override
@@ -42,7 +44,7 @@ class _MobileNumberCodeState extends State<MobileNumberCode> {
   late Size buttonSize;
   late Offset buttonPosition;
 
-  ValueNotifier<CountryModel> country =ValueNotifier(CountryModel());
+  ValueNotifier<CountryModel> country = ValueNotifier(CountryModel());
 
   @override
   void initState() {
@@ -83,7 +85,8 @@ class _MobileNumberCodeState extends State<MobileNumberCode> {
                     InkWell(
                       onTap: () {
                         findButton();
-                        phoneCodeSelect(context, buttonPosition, buttonSize,country);
+                        phoneCodeSelect(
+                            context, buttonPosition, buttonSize, country);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -115,12 +118,13 @@ class _MobileNumberCodeState extends State<MobileNumberCode> {
                         controller: widget.textEditingController,
                         keyboardType:
                             widget.keyBoardType ?? TextInputType.phone,
-                        decoration:
-                            widget.textFieldDecoration ?? const InputDecoration(),
+                        decoration: widget.textFieldDecoration ??
+                            const InputDecoration(),
                         onChanged: widget.onChanged ?? (val) {},
-                        validator: widget.validator ?? (val) {
-                          return null;
-                        },
+                        validator: widget.validator ??
+                            (val) {
+                              return null;
+                            },
                       ),
                     ),
                   ],

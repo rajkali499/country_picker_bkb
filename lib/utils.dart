@@ -272,29 +272,31 @@ var flags = {
   "ZW": "packages/country_picker_bkb/lib/assets/svg/zw.svg",
 };
 
-ValueNotifier<CountryModel> selectedCountryDetailsForPhoneCode=ValueNotifier(CountryModel());
+ValueNotifier<CountryModel> selectedCountryDetailsForPhoneCode =
+    ValueNotifier(CountryModel());
 
-ValueNotifier<CountryModel> selectedDetailsForCountry = ValueNotifier(CountryModel());
+ValueNotifier<CountryModel> selectedDetailsForCountry =
+    ValueNotifier(CountryModel());
 
-ValueNotifier<StateModel> selectedDetailsForState=ValueNotifier(StateModel());
+ValueNotifier<StateModel> selectedDetailsForState = ValueNotifier(StateModel());
 
-ValueNotifier<CityModel> selectedDetailsForCity=ValueNotifier(CityModel());
+ValueNotifier<CityModel> selectedDetailsForCity = ValueNotifier(CityModel());
 
 List<CountryModel> totalCounties = [];
 
-List<StateModel> totalStates= [];
+List<StateModel> totalStates = [];
 
-List<CityModel> totalCities= [];
+List<CityModel> totalCities = [];
 
-List<CountryModel> filteredCountriesForCode=[];
+List<CountryModel> filteredCountriesForCode = [];
 
-List<CountryModel> filteredCountries=[];
+List<CountryModel> filteredCountries = [];
 
-List<StateModel> filteredState=[];
+List<StateModel> filteredState = [];
 
-List<CityModel> filteredCity=[];
+List<CityModel> filteredCity = [];
 
 TextEditingController phoneCodeFilter = TextEditingController();
-TextEditingController countryFilter=TextEditingController();
-TextEditingController stateFilter=TextEditingController();
-TextEditingController cityFilter=TextEditingController();
+TextEditingController countryFilter = TextEditingController();
+TextEditingController stateFilter = TextEditingController();
+TextEditingController cityFilter = TextEditingController();

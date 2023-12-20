@@ -54,8 +54,9 @@ class _StatePickerState extends State<StatePicker> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-       findButton();
-       stateSelect(context, buttonPosition, buttonSize,state,selectedDetailsForCountry);
+        findButton();
+        stateSelect(context, buttonPosition, buttonSize, state,
+            selectedDetailsForCountry);
       },
       child: widget.child ??
           Container(

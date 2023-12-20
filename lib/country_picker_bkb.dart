@@ -70,8 +70,7 @@ citySelect(
     Offset buttonPosition,
     Size buttonSize,
     ValueNotifier<CityModel> value,
-    ValueNotifier<CountryModel> country,
-    ValueNotifier<StateModel> state) {
+    {ValueNotifier<CountryModel>? country, ValueNotifier<StateModel>? state}) {
   loadCityData(state: state, country: country);
   showDialog(
       barrierColor: Colors.transparent,
@@ -926,7 +925,8 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                                         .value = element;
                                                     value.value = element;
                                                   }
-                                                  debugPrint(value.value.dialCode);
+                                                  debugPrint(
+                                                      value.value.dialCode);
                                                   phoneCodeFilter.clear();
                                                   Navigator.pop(context);
                                                 },
@@ -1083,7 +1083,8 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                                         .value = element;
                                                     value.value = element;
                                                   }
-                                                  debugPrint(value.value.dialCode);
+                                                  debugPrint(
+                                                      value.value.dialCode);
                                                   phoneCodeFilter.clear();
                                                   Navigator.pop(context);
                                                 },
