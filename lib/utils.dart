@@ -282,6 +282,8 @@ ValueNotifier<StateModel> selectedDetailsForState = ValueNotifier(StateModel());
 
 ValueNotifier<CityModel> selectedDetailsForCity = ValueNotifier(CityModel());
 
+dynamic countryDetail;
+
 List<CountryModel> totalCounties = [];
 
 List<StateModel> totalStates = [];

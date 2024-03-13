@@ -1193,10 +1193,16 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
       });
 }
 
+Future<void> _loadJson() async {
+  if (countryDetail == null) {
+    var res = await rootBundle
+        .loadString('packages/country_picker_bkb/lib/assets/json/$jsonPath');
+    countryDetail = jsonDecode(res);
+  }
+}
+
 Future<dynamic> loadCountryData() async {
-  var res = await rootBundle
-      .loadString('packages/country_picker_bkb/lib/assets/json/$jsonPath');
-  var countryDetail = jsonDecode(res);
+  _loadJson();
   // Country_Model country_model=Country_Model.fromJson(jsonDecode(res;
   totalCounties = [noneCountry];
   countryDetail.forEach((element) {
@@ -1207,9 +1213,7 @@ Future<dynamic> loadCountryData() async {
 
 Future<dynamic> loadStateData(
     {ValueNotifier<CountryModel>? selectedDetailsForCountry1}) async {
-  var res = await rootBundle
-      .loadString('packages/country_picker_bkb/lib/assets/json/$jsonPath');
-  var countryDetail = jsonDecode(res);
+  _loadJson();
   // Country_Model country_model=Country_Model.fromJson(jsonDecode(res;
   if ((selectedDetailsForCountry1 ?? selectedDetailsForCountry).value.name !=
       null) {
@@ -1238,9 +1242,7 @@ Future<dynamic> loadStateData(
 Future<dynamic> loadCityData(
     {ValueNotifier<CountryModel>? country,
     ValueNotifier<StateModel>? state}) async {
-  var res = await rootBundle
-      .loadString('packages/country_picker_bkb/lib/assets/json/$jsonPath');
-  var countryDetail = jsonDecode(res);
+  _loadJson();
   // Country_Model country_model=Country_Model.fromJson(jsonDecode(res;
   if ((country ?? selectedDetailsForCountry).value.name != null &&
       (state ?? selectedDetailsForState).value.name != null) {
