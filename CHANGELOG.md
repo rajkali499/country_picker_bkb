@@ -25,3 +25,6 @@
 ## 1.0.7
 
 * Bug Fixes
+## 1.0.8
+
+* Removed unnecessary the json decoding
