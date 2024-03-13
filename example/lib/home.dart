@@ -1,6 +1,5 @@
 import 'package:country_picker_bkb/country_picker_bkb.dart';
 import 'package:country_picker_bkb/model/country_model.dart';
-import 'package:country_picker_bkb/utils.dart';
 import 'package:country_picker_bkb/widgets/city.dart';
 import 'package:country_picker_bkb/widgets/country.dart';
 import 'package:country_picker_bkb/widgets/mobile_number_code_picker.dart';
@@ -8,7 +7,7 @@ import 'package:country_picker_bkb/widgets/state.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
-   Home({Key? key}) : super(key: key);
+   const Home({Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -53,15 +52,15 @@ class _HomeState extends State<Home> {
               const SizedBox(
                 height: 20,
               ),
-              Country(),
+              const Country(),
               const SizedBox(
                 height: 20,
               ),
-              StatePicker(),
+              const StatePicker(),
               const SizedBox(
                 height: 20,
               ),
-              City(),
+              const City(),
               const SizedBox(
                 height: 20,
               ),

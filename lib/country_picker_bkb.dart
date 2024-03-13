@@ -24,7 +24,6 @@ class _CountryPickerState extends State<CountryPicker> {
 
   @override
   void initState() {
-    // TODO: implement initState
     loadCountryData();
     loadStateData();
     loadCityData();
