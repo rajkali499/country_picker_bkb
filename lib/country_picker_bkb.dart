@@ -1204,7 +1204,7 @@ Future<dynamic> loadCountryData() async {
   await _loadJson();
   // Country_Model country_model=Country_Model.fromJson(jsonDecode(res;
   totalCounties = [noneCountry];
-  countryDetail.forEach((element) {
+  countryDetail?.forEach((element) {
     totalCounties.add(CountryModel.fromJson(element));
   });
   debugPrint(totalCounties.length.toString());
@@ -1217,7 +1217,7 @@ Future<dynamic> loadStateData(
   if ((selectedDetailsForCountry1 ?? selectedDetailsForCountry).value.name !=
       null) {
     totalStates = [noneState];
-    countryDetail.forEach((element) {
+    countryDetail?.forEach((element) {
       if (element['name'] ==
           (selectedDetailsForCountry1 ?? selectedDetailsForCountry)
               .value
@@ -1229,7 +1229,7 @@ Future<dynamic> loadStateData(
     });
   } else {
     totalStates = [noneState];
-    countryDetail.forEach((element) {
+    countryDetail?.forEach((element) {
       element['state'].forEach((value) {
         totalStates.add(StateModel.fromJson(value));
       });
@@ -1246,7 +1246,7 @@ Future<dynamic> loadCityData(
   if ((country ?? selectedDetailsForCountry).value.name != null &&
       (state ?? selectedDetailsForState).value.name != null) {
     totalCities = [noneCity];
-    countryDetail.forEach((element) {
+    countryDetail?.forEach((element) {
       if (element['name'] ==
           (country ?? selectedDetailsForCountry).value.name) {
         element['state'].forEach((value) {
@@ -1260,7 +1260,7 @@ Future<dynamic> loadCityData(
     });
   } else if ((country ?? selectedDetailsForCountry).value.name != null) {
     totalCities = [noneCity];
-    countryDetail.forEach((element) {
+    countryDetail?.forEach((element) {
       if (element['name'] ==
           (country ?? selectedDetailsForCountry).value.name) {
         element['state'].forEach((value) {
@@ -1272,7 +1272,7 @@ Future<dynamic> loadCityData(
     });
   } else if ((state ?? selectedDetailsForState).value.name != null) {
     totalCities = [];
-    countryDetail.forEach((element) {
+    countryDetail?.forEach((element) {
       element['state'].forEach((value) {
         if ((state ?? selectedDetailsForState).value.name == value['name']) {
           value['city'].forEach((data) {
@@ -1283,7 +1283,7 @@ Future<dynamic> loadCityData(
     });
   } else {
     totalCities = [];
-    countryDetail.forEach((element) {
+    countryDetail?.forEach((element) {
       element['state'].forEach((value) {
         value['city'].forEach((data) {
           totalCities.add(CityModel.fromJson(data));
