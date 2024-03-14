@@ -28,3 +28,6 @@
 ## 1.0.8
 
 * Removed unnecessary the json decoding
+## 1.0.9
+
+* Bug Fix on loading asset

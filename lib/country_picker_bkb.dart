@@ -1201,7 +1201,7 @@ Future<void> _loadJson() async {
 }
 
 Future<dynamic> loadCountryData() async {
-  _loadJson();
+  await _loadJson();
   // Country_Model country_model=Country_Model.fromJson(jsonDecode(res;
   totalCounties = [noneCountry];
   countryDetail.forEach((element) {
@@ -1212,7 +1212,7 @@ Future<dynamic> loadCountryData() async {
 
 Future<dynamic> loadStateData(
     {ValueNotifier<CountryModel>? selectedDetailsForCountry1}) async {
-  _loadJson();
+  await _loadJson();
   // Country_Model country_model=Country_Model.fromJson(jsonDecode(res;
   if ((selectedDetailsForCountry1 ?? selectedDetailsForCountry).value.name !=
       null) {
@@ -1241,7 +1241,7 @@ Future<dynamic> loadStateData(
 Future<dynamic> loadCityData(
     {ValueNotifier<CountryModel>? country,
     ValueNotifier<StateModel>? state}) async {
-  _loadJson();
+  await _loadJson();
   // Country_Model country_model=Country_Model.fromJson(jsonDecode(res;
   if ((country ?? selectedDetailsForCountry).value.name != null &&
       (state ?? selectedDetailsForState).value.name != null) {
