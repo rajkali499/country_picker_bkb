@@ -31,3 +31,9 @@
 ## 1.0.9
 
 * Bug Fix on loading asset
+* ## 1.0.10
+
+* Bug Fix on loading asset size
+* ## 1.0.11
+
+* Bug Fix on asset size
