@@ -17,12 +17,13 @@ and the Flutter guide for
 country , state, city alone by using search and if we use the country, state, city pickers together then It will show the data
 dependent to that selected data. for Example If we choose country then the state and city will be loaded and will show the 
 details of state and city inside that country. If we choose country and state both then the city details will be based on the 
-country and state only
-![Country_Picker_BKB](https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984848114.JPEG =250x450)
-![Select CountryCode](https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984849131.JPEG =250x450)
-![Select Country](https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984848469.JPEG =250x450)
-![Select State](https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984849674.JPEG =250x450)
-![Select City](https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984847859.JPEG =250x450)
+country and state only.
+
+<img alt="Country Picker BKB" src="https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984848114.jpeg" width="200"/>
+<img alt="Select CountryCode Dialog" src="https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984849131.jpeg" width="200"/>
+<img alt="Select Country Dialog" src="https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984848469.jpeg" width="200"/>
+<img alt="Select State Dialog" src="https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984849674.jpeg" width="200"/>
+<img alt="Select City Dialog" src="https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984847859.jpeg" width="200"/>
 
 
 ## Getting started
