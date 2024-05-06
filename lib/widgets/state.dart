@@ -36,7 +36,6 @@ class _StatePickerState extends State<StatePicker> {
 
   @override
   void initState() {
-    // TODO: implement initState
     loadCountryData();
     loadStateData();
     loadCityData();
@@ -56,7 +55,7 @@ class _StatePickerState extends State<StatePicker> {
       onTap: () {
         findButton();
         stateSelect(context, buttonPosition, buttonSize, state,
-            selectedDetailsForCountry);
+           selectedCountry: selectedDetailsForCountry);
       },
       child: widget.child ??
           Container(

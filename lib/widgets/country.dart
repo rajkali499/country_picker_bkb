@@ -1,4 +1,5 @@
 import 'package:country_picker_bkb/model/country_model.dart';
+import 'package:country_picker_bkb/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -35,7 +36,6 @@ class _CountryState extends State<Country> {
 
   @override
   void initState() {
-    // TODO: implement initState
     loadCountryData();
     loadStateData();
     loadCityData();
@@ -68,7 +68,7 @@ class _CountryState extends State<Country> {
                   color: widget.color ?? Colors.white,
                 ),
             child: ValueListenableBuilder(
-                valueListenable: (country),
+                valueListenable: selectedDetailsForCountry,
                 builder: (context, CountryModel selectedCountry, child) {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

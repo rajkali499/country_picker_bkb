@@ -64,12 +64,30 @@ class _CountryPickerState extends State<CountryPicker> {
   }
 }
 
-citySelect(
-    BuildContext context,
-    Offset buttonPosition,
-    Size buttonSize,
+citySelect(BuildContext context, Offset buttonPosition, Size buttonSize,
     ValueNotifier<CityModel> value,
-    {ValueNotifier<CountryModel>? country, ValueNotifier<StateModel>? state}) {
+    {TextStyle? myTextStyle,
+    Color? backgroundColor,
+    Color? shadowColor,
+    ShapeBorder? shape,
+    InputDecoration? editTextFieldDecoration,
+    TextStyle? editTextStyle,
+    double cursorWidth = 2.0,
+    double? cursorHeight,
+    Radius? cursorRadius,
+    Color? cursorColor,
+    Color? focusColorListTile,
+    Color? hoverColorListTile,
+    Color? highlightColorListTile,
+    MaterialStateProperty<Color?>? overlayColorListTile,
+    Color? splashColorListTile = Colors.blue,
+    BorderRadius? borderRadiusListTile,
+    ShapeBorder? customBorderListTile,
+    Duration? hoverDurationListTile,
+    Decoration? listTileDecoration,
+    EdgeInsetsGeometry? listTileMargin,
+    ValueNotifier<CountryModel>? country,
+    ValueNotifier<StateModel>? state}) {
   loadCityData(state: state, country: country);
   showDialog(
       barrierColor: Colors.transparent,
@@ -88,8 +106,11 @@ citySelect(
                           (buttonSize.height / 4),
                       child: Material(
                         elevation: 3,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                        color: backgroundColor,
+                        shadowColor: shadowColor,
+                        shape: shape ??
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           children: [
                             Padding(
@@ -105,12 +126,17 @@ citySelect(
                                           offset: cityFilter.text.length));
                                   filterCity();
                                 },
-                                decoration: InputDecoration(
-                                    hintText: "Search city",
-                                    suffixIcon: const Icon(Icons.search),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    )),
+                                cursorHeight: cursorHeight,
+                                cursorRadius: cursorRadius,
+                                cursorColor: cursorColor,
+                                decoration: editTextFieldDecoration ??
+                                    InputDecoration(
+                                        hintText: "Search city",
+                                        suffixIcon: const Icon(Icons.search),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        )),
                               ),
                             ),
                             Expanded(
@@ -138,21 +164,40 @@ citySelect(
                                                   cityFilter.clear();
                                                   Navigator.pop(context);
                                                 },
-                                                child: Padding(
+                                                focusColor: focusColorListTile,
+                                                hoverColor: hoverColorListTile,
+                                                highlightColor:
+                                                    highlightColorListTile,
+                                                overlayColor:
+                                                    overlayColorListTile,
+                                                splashColor:
+                                                    splashColorListTile,
+                                                borderRadius:
+                                                    borderRadiusListTile,
+                                                customBorder:
+                                                    customBorderListTile,
+                                                hoverDuration:
+                                                    hoverDurationListTile,
+                                                child: Container(
+                                                  decoration:
+                                                      listTileDecoration,
+                                                  margin: listTileMargin,
                                                   padding: const EdgeInsets
                                                       .symmetric(
                                                       vertical: 10.0),
-                                                  child:
-                                                      Text(element.name ?? ""),
+                                                  child: Text(
+                                                      element.name ?? "",
+                                                      style: myTextStyle),
                                                 ),
                                               ))
                                           .toList(),
                                     )
                                   : totalCities.isEmpty
-                                      ? const Padding(
-                                          padding: EdgeInsets.symmetric(
+                                      ? Padding(
+                                          padding: const EdgeInsets.symmetric(
                                               vertical: 10.0),
-                                          child: Text("No City Available"),
+                                          child: Text("No City Available",
+                                              style: myTextStyle),
                                         )
                                       : ListView.builder(
                                           padding: const EdgeInsets.symmetric(
@@ -179,13 +224,29 @@ citySelect(
                                                 cityFilter.clear();
                                                 Navigator.pop(context);
                                               },
-                                              child: Padding(
+                                              focusColor: focusColorListTile,
+                                              hoverColor: hoverColorListTile,
+                                              highlightColor:
+                                                  highlightColorListTile,
+                                              overlayColor:
+                                                  overlayColorListTile,
+                                              splashColor: splashColorListTile,
+                                              borderRadius:
+                                                  borderRadiusListTile,
+                                              customBorder:
+                                                  customBorderListTile,
+                                              hoverDuration:
+                                                  hoverDurationListTile,
+                                              child: Container(
+                                                decoration: listTileDecoration,
+                                                margin: listTileMargin,
                                                 padding:
                                                     const EdgeInsets.symmetric(
                                                         vertical: 10.0),
                                                 child: Text(
                                                     totalCities[index].name ??
-                                                        ""),
+                                                        "",
+                                                    style: myTextStyle),
                                               ),
                                             );
                                           },
@@ -196,7 +257,7 @@ citySelect(
                       ),
                     )
                   : Positioned(
-                      top: buttonPosition.dy,
+                      top: buttonPosition.dy + 30,
                       left: buttonPosition.dx,
                       width: buttonSize.width,
                       height: MediaQuery.of(context).size.height -
@@ -204,8 +265,11 @@ citySelect(
                           100,
                       child: Material(
                         elevation: 3,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                        color: backgroundColor,
+                        shadowColor: shadowColor,
+                        shape: shape ??
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           children: [
                             Padding(
@@ -221,12 +285,17 @@ citySelect(
                                           offset: cityFilter.text.length));
                                   filterCity();
                                 },
-                                decoration: InputDecoration(
-                                    hintText: "Search city",
-                                    suffixIcon: const Icon(Icons.search),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    )),
+                                cursorHeight: cursorHeight,
+                                cursorRadius: cursorRadius,
+                                cursorColor: cursorColor,
+                                decoration: editTextFieldDecoration ??
+                                    InputDecoration(
+                                        hintText: "Search city",
+                                        suffixIcon: const Icon(Icons.search),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        )),
                               ),
                             ),
                             Expanded(
@@ -254,21 +323,40 @@ citySelect(
                                                   cityFilter.clear();
                                                   Navigator.pop(context);
                                                 },
-                                                child: Padding(
+                                                focusColor: focusColorListTile,
+                                                hoverColor: hoverColorListTile,
+                                                highlightColor:
+                                                    highlightColorListTile,
+                                                overlayColor:
+                                                    overlayColorListTile,
+                                                splashColor:
+                                                    splashColorListTile,
+                                                borderRadius:
+                                                    borderRadiusListTile,
+                                                customBorder:
+                                                    customBorderListTile,
+                                                hoverDuration:
+                                                    hoverDurationListTile,
+                                                child: Container(
+                                                  decoration:
+                                                      listTileDecoration,
+                                                  margin: listTileMargin,
                                                   padding: const EdgeInsets
                                                       .symmetric(
                                                       vertical: 10.0),
-                                                  child:
-                                                      Text(element.name ?? ""),
+                                                  child: Text(
+                                                      element.name ?? "",
+                                                      style: myTextStyle),
                                                 ),
                                               ))
                                           .toList(),
                                     )
                                   : totalCities.isEmpty
-                                      ? const Padding(
-                                          padding: EdgeInsets.symmetric(
+                                      ? Padding(
+                                          padding: const EdgeInsets.symmetric(
                                               vertical: 10.0),
-                                          child: Text("No City Available"),
+                                          child: Text("No City Available",
+                                              style: myTextStyle),
                                         )
                                       : ListView.builder(
                                           padding: const EdgeInsets.symmetric(
@@ -295,13 +383,29 @@ citySelect(
                                                 cityFilter.clear();
                                                 Navigator.pop(context);
                                               },
-                                              child: Padding(
+                                              focusColor: focusColorListTile,
+                                              hoverColor: hoverColorListTile,
+                                              highlightColor:
+                                                  highlightColorListTile,
+                                              overlayColor:
+                                                  overlayColorListTile,
+                                              splashColor: splashColorListTile,
+                                              borderRadius:
+                                                  borderRadiusListTile,
+                                              customBorder:
+                                                  customBorderListTile,
+                                              hoverDuration:
+                                                  hoverDurationListTile,
+                                              child: Container(
+                                                decoration: listTileDecoration,
+                                                margin: listTileMargin,
                                                 padding:
                                                     const EdgeInsets.symmetric(
                                                         vertical: 10.0),
                                                 child: Text(
                                                     totalCities[index].name ??
-                                                        ""),
+                                                        "",
+                                                    style: myTextStyle),
                                               ),
                                             );
                                           },
@@ -317,12 +421,29 @@ citySelect(
       });
 }
 
-stateSelect(
-    BuildContext context,
-    Offset buttonPosition,
-    Size buttonSize,
+stateSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
     ValueNotifier<StateModel> value,
-    ValueNotifier<CountryModel> selectedCountry) {
+    {TextStyle? myTextStyle,
+    Color? backgroundColor,
+    Color? shadowColor,
+    ShapeBorder? shape,
+    InputDecoration? editTextFieldDecoration,
+    TextStyle? editTextStyle,
+    double cursorWidth = 2.0,
+    double? cursorHeight,
+    Radius? cursorRadius,
+    Color? cursorColor,
+    Color? focusColorListTile,
+    Color? hoverColorListTile,
+    Color? highlightColorListTile,
+    MaterialStateProperty<Color?>? overlayColorListTile,
+    Color? splashColorListTile = Colors.blue,
+    BorderRadius? borderRadiusListTile,
+    ShapeBorder? customBorderListTile,
+    Duration? hoverDurationListTile,
+    Decoration? listTileDecoration,
+    EdgeInsetsGeometry? listTileMargin,
+    ValueNotifier<CountryModel>? selectedCountry}) {
   loadStateData(selectedDetailsForCountry1: selectedCountry);
   showDialog(
       barrierColor: Colors.transparent,
@@ -341,8 +462,11 @@ stateSelect(
                           (buttonSize.height / 4),
                       child: Material(
                         elevation: 3,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                        color: backgroundColor,
+                        shadowColor: shadowColor,
+                        shape: shape ??
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           children: [
                             Padding(
@@ -358,12 +482,17 @@ stateSelect(
                                           offset: stateFilter.text.length));
                                   filterState();
                                 },
-                                decoration: InputDecoration(
-                                    hintText: "Search state",
-                                    suffixIcon: const Icon(Icons.search),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    )),
+                                cursorHeight: cursorHeight,
+                                cursorRadius: cursorRadius,
+                                cursorColor: cursorColor,
+                                decoration: editTextFieldDecoration ??
+                                    InputDecoration(
+                                        hintText: "Search state",
+                                        suffixIcon: const Icon(Icons.search),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        )),
                               ),
                             ),
                             Expanded(
@@ -395,21 +524,40 @@ stateSelect(
                                                   stateFilter.clear();
                                                   Navigator.pop(context);
                                                 },
-                                                child: Padding(
+                                                focusColor: focusColorListTile,
+                                                hoverColor: hoverColorListTile,
+                                                highlightColor:
+                                                    highlightColorListTile,
+                                                overlayColor:
+                                                    overlayColorListTile,
+                                                splashColor:
+                                                    splashColorListTile,
+                                                borderRadius:
+                                                    borderRadiusListTile,
+                                                customBorder:
+                                                    customBorderListTile,
+                                                hoverDuration:
+                                                    hoverDurationListTile,
+                                                child: Container(
+                                                  decoration:
+                                                      listTileDecoration,
+                                                  margin: listTileMargin,
                                                   padding: const EdgeInsets
                                                       .symmetric(
                                                       vertical: 10.0),
-                                                  child:
-                                                      Text(element.name ?? ""),
+                                                  child: Text(
+                                                      element.name ?? "",
+                                                      style: myTextStyle),
                                                 ),
                                               ))
                                           .toList(),
                                     )
                                   : totalStates.isEmpty
-                                      ? const Padding(
-                                          padding: EdgeInsets.symmetric(
+                                      ? Padding(
+                                          padding: const EdgeInsets.symmetric(
                                               vertical: 10.0),
-                                          child: Text("No State Available"),
+                                          child: Text("No State Available",
+                                              style: myTextStyle),
                                         )
                                       : ListView.builder(
                                           padding: const EdgeInsets.symmetric(
@@ -441,13 +589,29 @@ stateSelect(
                                                 stateFilter.clear();
                                                 Navigator.pop(context);
                                               },
-                                              child: Padding(
+                                              focusColor: focusColorListTile,
+                                              hoverColor: hoverColorListTile,
+                                              highlightColor:
+                                                  highlightColorListTile,
+                                              overlayColor:
+                                                  overlayColorListTile,
+                                              splashColor: splashColorListTile,
+                                              borderRadius:
+                                                  borderRadiusListTile,
+                                              customBorder:
+                                                  customBorderListTile,
+                                              hoverDuration:
+                                                  hoverDurationListTile,
+                                              child: Container(
+                                                decoration: listTileDecoration,
+                                                margin: listTileMargin,
                                                 padding:
                                                     const EdgeInsets.symmetric(
                                                         vertical: 10.0),
                                                 child: Text(
                                                     totalStates[index].name ??
-                                                        ""),
+                                                        "",
+                                                    style: myTextStyle),
                                               ),
                                             );
                                           },
@@ -458,7 +622,7 @@ stateSelect(
                       ),
                     )
                   : Positioned(
-                      top: buttonPosition.dy,
+                      top: buttonPosition.dy + 30,
                       left: buttonPosition.dx,
                       width: buttonSize.width,
                       height: MediaQuery.of(context).size.height -
@@ -466,8 +630,11 @@ stateSelect(
                           100,
                       child: Material(
                         elevation: 3,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                        shadowColor: shadowColor,
+                        color: backgroundColor,
+                        shape: shape ??
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           children: [
                             Padding(
@@ -483,12 +650,17 @@ stateSelect(
                                           offset: stateFilter.text.length));
                                   filterState();
                                 },
-                                decoration: InputDecoration(
-                                    hintText: "Search state",
-                                    suffixIcon: const Icon(Icons.search),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    )),
+                                cursorHeight: cursorHeight,
+                                cursorRadius: cursorRadius,
+                                cursorColor: cursorColor,
+                                decoration: editTextFieldDecoration ??
+                                    InputDecoration(
+                                        hintText: "Search state",
+                                        suffixIcon: const Icon(Icons.search),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        )),
                               ),
                             ),
                             Expanded(
@@ -520,21 +692,40 @@ stateSelect(
                                                   stateFilter.clear();
                                                   Navigator.pop(context);
                                                 },
-                                                child: Padding(
+                                                focusColor: focusColorListTile,
+                                                hoverColor: hoverColorListTile,
+                                                highlightColor:
+                                                    highlightColorListTile,
+                                                overlayColor:
+                                                    overlayColorListTile,
+                                                splashColor:
+                                                    splashColorListTile,
+                                                borderRadius:
+                                                    borderRadiusListTile,
+                                                customBorder:
+                                                    customBorderListTile,
+                                                hoverDuration:
+                                                    hoverDurationListTile,
+                                                child: Container(
+                                                  decoration:
+                                                      listTileDecoration,
+                                                  margin: listTileMargin,
                                                   padding: const EdgeInsets
                                                       .symmetric(
                                                       vertical: 10.0),
-                                                  child:
-                                                      Text(element.name ?? ""),
+                                                  child: Text(
+                                                      element.name ?? "",
+                                                      style: myTextStyle),
                                                 ),
                                               ))
                                           .toList(),
                                     )
                                   : totalStates.isEmpty
-                                      ? const Padding(
-                                          padding: EdgeInsets.symmetric(
+                                      ? Padding(
+                                          padding: const EdgeInsets.symmetric(
                                               vertical: 10.0),
-                                          child: Text("No State Available"),
+                                          child: Text("No State Available",
+                                              style: myTextStyle),
                                         )
                                       : ListView.builder(
                                           padding: const EdgeInsets.symmetric(
@@ -566,13 +757,29 @@ stateSelect(
                                                 stateFilter.clear();
                                                 Navigator.pop(context);
                                               },
-                                              child: Padding(
+                                              focusColor: focusColorListTile,
+                                              hoverColor: hoverColorListTile,
+                                              highlightColor:
+                                                  highlightColorListTile,
+                                              overlayColor:
+                                                  overlayColorListTile,
+                                              splashColor: splashColorListTile,
+                                              borderRadius:
+                                                  borderRadiusListTile,
+                                              customBorder:
+                                                  customBorderListTile,
+                                              hoverDuration:
+                                                  hoverDurationListTile,
+                                              child: Container(
+                                                decoration: listTileDecoration,
+                                                margin: listTileMargin,
                                                 padding:
                                                     const EdgeInsets.symmetric(
                                                         vertical: 10.0),
                                                 child: Text(
                                                     totalStates[index].name ??
-                                                        ""),
+                                                        "",
+                                                    style: myTextStyle),
                                               ),
                                             );
                                           },
@@ -588,8 +795,32 @@ stateSelect(
       });
 }
 
-countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,
-    ValueNotifier<CountryModel> value) {
+countrySelect(
+  BuildContext context,
+  Offset buttonPosition,
+  Size buttonSize,
+  ValueNotifier<CountryModel> value, {
+  TextStyle? myTextStyle,
+  Color? backgroundColor,
+  Color? shadowColor,
+  ShapeBorder? shape,
+  InputDecoration? editTextFieldDecoration,
+  TextStyle? editTextStyle,
+  double cursorWidth = 2.0,
+  double? cursorHeight,
+  Radius? cursorRadius,
+  Color? cursorColor,
+  Color? focusColorListTile,
+  Color? hoverColorListTile,
+  Color? highlightColorListTile,
+  MaterialStateProperty<Color?>? overlayColorListTile,
+  Color? splashColorListTile = Colors.blue,
+  BorderRadius? borderRadiusListTile,
+  ShapeBorder? customBorderListTile,
+  Duration? hoverDurationListTile,
+  Decoration? listTileDecoration,
+  EdgeInsetsGeometry? listTileMargin,
+}) {
   showDialog(
       barrierColor: Colors.transparent,
       context: context,
@@ -607,8 +838,11 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                           (buttonSize.height / 4),
                       child: Material(
                         elevation: 3,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                        color: backgroundColor,
+                        shadowColor: shadowColor,
+                        shape: shape ??
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           children: [
                             Padding(
@@ -624,12 +858,18 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                           offset: countryFilter.text.length));
                                   filterCountry();
                                 },
-                                decoration: InputDecoration(
-                                    hintText: "Search country",
-                                    suffixIcon: const Icon(Icons.search),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    )),
+                                style: editTextStyle,
+                                cursorHeight: cursorHeight,
+                                cursorRadius: cursorRadius,
+                                cursorColor: cursorColor,
+                                decoration: editTextFieldDecoration ??
+                                    InputDecoration(
+                                        hintText: "Search country",
+                                        suffixIcon: const Icon(Icons.search),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        )),
                               ),
                             ),
                             Expanded(
@@ -665,13 +905,28 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                                     CityModel();
                                                 Navigator.pop(context);
                                               },
-                                              splashColor: Colors.blue,
-                                              child: Padding(
+                                              focusColor: focusColorListTile,
+                                              hoverColor: hoverColorListTile,
+                                              highlightColor:
+                                                  highlightColorListTile,
+                                              overlayColor:
+                                                  overlayColorListTile,
+                                              splashColor: splashColorListTile,
+                                              borderRadius:
+                                                  borderRadiusListTile,
+                                              customBorder:
+                                                  customBorderListTile,
+                                              hoverDuration:
+                                                  hoverDurationListTile,
+                                              child: Container(
+                                                decoration: listTileDecoration,
+                                                margin: listTileMargin,
                                                 padding:
                                                     const EdgeInsets.symmetric(
                                                         vertical: 10.0,
                                                         horizontal: 10),
-                                                child: Text(element.name ?? ""),
+                                                child: Text(element.name ?? "",
+                                                    style: myTextStyle),
                                               ),
                                             ),
                                           )
@@ -710,13 +965,23 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                                 CityModel();
                                             Navigator.pop(context);
                                           },
-                                          splashColor: Colors.blue,
-                                          child: Padding(
+                                          focusColor: focusColorListTile,
+                                          hoverColor: hoverColorListTile,
+                                          highlightColor:
+                                              highlightColorListTile,
+                                          overlayColor: overlayColorListTile,
+                                          splashColor: splashColorListTile,
+                                          borderRadius: borderRadiusListTile,
+                                          customBorder: customBorderListTile,
+                                          hoverDuration: hoverDurationListTile,
+                                          child: Container(
+                                            decoration: listTileDecoration,
+                                            margin: listTileMargin,
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10.0, horizontal: 10),
                                             child: Text(
-                                                totalCounties[index].name ??
-                                                    ""),
+                                                totalCounties[index].name ?? "",
+                                                style: myTextStyle),
                                           ),
                                         );
                                       },
@@ -727,7 +992,7 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                       ),
                     )
                   : Positioned(
-                      top: buttonPosition.dy,
+                      top: buttonPosition.dy + 30,
                       left: buttonPosition.dx,
                       width: buttonSize.width,
                       height: MediaQuery.of(context).size.height -
@@ -735,8 +1000,11 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                           100,
                       child: Material(
                         elevation: 3,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                        color: backgroundColor,
+                        shadowColor: shadowColor,
+                        shape: shape ??
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           children: [
                             Padding(
@@ -752,12 +1020,17 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                           offset: countryFilter.text.length));
                                   filterCountry();
                                 },
-                                decoration: InputDecoration(
-                                    hintText: "Search country",
-                                    suffixIcon: const Icon(Icons.search),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    )),
+                                cursorHeight: cursorHeight,
+                                cursorRadius: cursorRadius,
+                                cursorColor: cursorColor,
+                                decoration: editTextFieldDecoration ??
+                                    InputDecoration(
+                                        hintText: "Search country",
+                                        suffixIcon: const Icon(Icons.search),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        )),
                               ),
                             ),
                             Expanded(
@@ -793,13 +1066,28 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                                     CityModel();
                                                 Navigator.pop(context);
                                               },
-                                              splashColor: Colors.blue,
-                                              child: Padding(
+                                              focusColor: focusColorListTile,
+                                              hoverColor: hoverColorListTile,
+                                              highlightColor:
+                                                  highlightColorListTile,
+                                              overlayColor:
+                                                  overlayColorListTile,
+                                              splashColor: splashColorListTile,
+                                              borderRadius:
+                                                  borderRadiusListTile,
+                                              customBorder:
+                                                  customBorderListTile,
+                                              hoverDuration:
+                                                  hoverDurationListTile,
+                                              child: Container(
+                                                decoration: listTileDecoration,
+                                                margin: listTileMargin,
                                                 padding:
                                                     const EdgeInsets.symmetric(
                                                         vertical: 10.0,
                                                         horizontal: 10),
-                                                child: Text(element.name ?? ""),
+                                                child: Text(element.name ?? "",
+                                                    style: myTextStyle),
                                               ),
                                             ),
                                           )
@@ -838,13 +1126,23 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                                 CityModel();
                                             Navigator.pop(context);
                                           },
-                                          splashColor: Colors.blue,
-                                          child: Padding(
+                                          focusColor: focusColorListTile,
+                                          hoverColor: hoverColorListTile,
+                                          highlightColor:
+                                              highlightColorListTile,
+                                          overlayColor: overlayColorListTile,
+                                          splashColor: splashColorListTile,
+                                          borderRadius: borderRadiusListTile,
+                                          customBorder: customBorderListTile,
+                                          hoverDuration: hoverDurationListTile,
+                                          child: Container(
+                                            decoration: listTileDecoration,
+                                            margin: listTileMargin,
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10.0, horizontal: 10),
                                             child: Text(
-                                                totalCounties[index].name ??
-                                                    ""),
+                                                totalCounties[index].name ?? "",
+                                                style: myTextStyle),
                                           ),
                                         );
                                       },
@@ -860,8 +1158,32 @@ countrySelect(BuildContext context, Offset buttonPosition, Size buttonSize,
       });
 }
 
-phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
-    ValueNotifier<CountryModel> value) {
+phoneCodeSelect(
+  BuildContext context,
+  Offset buttonPosition,
+  Size buttonSize,
+  ValueNotifier<CountryModel> value, {
+  TextStyle? myTextStyle,
+  Color? backgroundColor,
+  Color? shadowColor,
+  ShapeBorder? shape,
+  InputDecoration? editTextFieldDecoration,
+  TextStyle? editTextStyle,
+  double cursorWidth = 2.0,
+  double? cursorHeight,
+  Radius? cursorRadius,
+  Color? cursorColor,
+  Color? focusColorListTile,
+  Color? hoverColorListTile,
+  Color? highlightColorListTile,
+  MaterialStateProperty<Color?>? overlayColorListTile,
+  Color? splashColorListTile = Colors.blue,
+  BorderRadius? borderRadiusListTile,
+  ShapeBorder? customBorderListTile,
+  Duration? hoverDurationListTile,
+  Decoration? listTileDecoration,
+  EdgeInsetsGeometry? listTileMargin,
+}) {
   showDialog(
       barrierColor: Colors.transparent,
       context: context,
@@ -879,8 +1201,11 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                           (buttonSize.height / 4),
                       child: Material(
                         elevation: 3,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                        color: backgroundColor,
+                        shadowColor: shadowColor,
+                        shape: shape ??
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -897,12 +1222,17 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                           offset: phoneCodeFilter.text.length));
                                   filterPhoneCode();
                                 },
-                                decoration: InputDecoration(
-                                    hintText: "Search here",
-                                    suffixIcon: const Icon(Icons.search),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    )),
+                                cursorHeight: cursorHeight,
+                                cursorRadius: cursorRadius,
+                                cursorColor: cursorColor,
+                                decoration: editTextFieldDecoration ??
+                                    InputDecoration(
+                                        hintText: "Search here",
+                                        suffixIcon: const Icon(Icons.search),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        )),
                               ),
                             ),
                             Expanded(
@@ -929,7 +1259,24 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                                   phoneCodeFilter.clear();
                                                   Navigator.pop(context);
                                                 },
-                                                child: Padding(
+                                                focusColor: focusColorListTile,
+                                                hoverColor: hoverColorListTile,
+                                                highlightColor:
+                                                    highlightColorListTile,
+                                                overlayColor:
+                                                    overlayColorListTile,
+                                                splashColor:
+                                                    splashColorListTile,
+                                                borderRadius:
+                                                    borderRadiusListTile,
+                                                customBorder:
+                                                    customBorderListTile,
+                                                hoverDuration:
+                                                    hoverDurationListTile,
+                                                child: Container(
+                                                  decoration:
+                                                      listTileDecoration,
+                                                  margin: listTileMargin,
                                                   padding: const EdgeInsets
                                                       .symmetric(
                                                       vertical: 10.0),
@@ -944,20 +1291,28 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                                               BorderRadius
                                                                   .circular(10),
                                                           child:
-                                                              SvgPicture.asset(
-                                                            flags[element
-                                                                        .code ??
-                                                                    ""] ??
-                                                                "",
-                                                            height: 20,
-                                                            width: 20,
-                                                            fit: BoxFit.cover,
-                                                          ),
+                                                              element.dialCode !=
+                                                                      null
+                                                                  ? SvgPicture
+                                                                      .asset(
+                                                                      flags[element.code ??
+                                                                              ""] ??
+                                                                          "",
+                                                                      height:
+                                                                          20,
+                                                                      width: 20,
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                    )
+                                                                  : Container(),
                                                         ),
                                                       ),
-                                                      Text(element.dialCode ??
-                                                          ""),
-                                                      Text(element.name ?? ""),
+                                                      Text(
+                                                          element.dialCode ??
+                                                              "",
+                                                          style: myTextStyle),
+                                                      Text(element.name ?? "",
+                                                          style: myTextStyle),
                                                     ],
                                                   ),
                                                 ),
@@ -987,7 +1342,18 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                             phoneCodeFilter.clear();
                                             Navigator.pop(context);
                                           },
-                                          child: Padding(
+                                          focusColor: focusColorListTile,
+                                          hoverColor: hoverColorListTile,
+                                          highlightColor:
+                                              highlightColorListTile,
+                                          overlayColor: overlayColorListTile,
+                                          splashColor: splashColorListTile,
+                                          borderRadius: borderRadiusListTile,
+                                          customBorder: customBorderListTile,
+                                          hoverDuration: hoverDurationListTile,
+                                          child: Container(
+                                            decoration: listTileDecoration,
+                                            margin: listTileMargin,
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10.0),
                                             child: Wrap(
@@ -1000,23 +1366,32 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             10),
-                                                    child: SvgPicture.asset(
-                                                      flags[totalCounties[index]
-                                                                  .code ??
-                                                              ""] ??
-                                                          "",
-                                                      height: 20,
-                                                      width: 20,
-                                                      fit: BoxFit.cover,
-                                                    ),
+                                                    child:
+                                                        totalCounties[index]
+                                                                    .dialCode !=
+                                                                null
+                                                            ? SvgPicture.asset(
+                                                                flags[totalCounties[index]
+                                                                            .code ??
+                                                                        ""] ??
+                                                                    "",
+                                                                height: 20,
+                                                                width: 20,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              )
+                                                            : Container(),
                                                   ),
                                                 ),
-                                                Text(totalCounties[index]
-                                                        .dialCode ??
-                                                    ""),
+                                                Text(
+                                                    totalCounties[index]
+                                                            .dialCode ??
+                                                        "",
+                                                    style: myTextStyle),
                                                 Text(
                                                     totalCounties[index].name ??
-                                                        ""),
+                                                        "",
+                                                    style: myTextStyle),
                                               ],
                                             ),
                                           ),
@@ -1029,7 +1404,7 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                       ),
                     )
                   : Positioned(
-                      top: buttonPosition.dy,
+                      top: buttonPosition.dy + 30,
                       left: buttonPosition.dx,
                       width: buttonSize.width,
                       height: MediaQuery.of(context).size.height -
@@ -1037,8 +1412,11 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                           100,
                       child: Material(
                         elevation: 3,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                        color: backgroundColor,
+                        shadowColor: shadowColor,
+                        shape: shape ??
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -1055,12 +1433,17 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                           offset: phoneCodeFilter.text.length));
                                   filterPhoneCode();
                                 },
-                                decoration: InputDecoration(
-                                    hintText: "Search here",
-                                    suffixIcon: const Icon(Icons.search),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    )),
+                                cursorHeight: cursorHeight,
+                                cursorRadius: cursorRadius,
+                                cursorColor: cursorColor,
+                                decoration: editTextFieldDecoration ??
+                                    InputDecoration(
+                                        hintText: "Search here",
+                                        suffixIcon: const Icon(Icons.search),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        )),
                               ),
                             ),
                             Expanded(
@@ -1087,7 +1470,24 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                                   phoneCodeFilter.clear();
                                                   Navigator.pop(context);
                                                 },
-                                                child: Padding(
+                                                focusColor: focusColorListTile,
+                                                hoverColor: hoverColorListTile,
+                                                highlightColor:
+                                                    highlightColorListTile,
+                                                overlayColor:
+                                                    overlayColorListTile,
+                                                splashColor:
+                                                    splashColorListTile,
+                                                borderRadius:
+                                                    borderRadiusListTile,
+                                                customBorder:
+                                                    customBorderListTile,
+                                                hoverDuration:
+                                                    hoverDurationListTile,
+                                                child: Container(
+                                                  decoration:
+                                                      listTileDecoration,
+                                                  margin: listTileMargin,
                                                   padding: const EdgeInsets
                                                       .symmetric(
                                                       vertical: 10.0),
@@ -1102,20 +1502,28 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                                               BorderRadius
                                                                   .circular(10),
                                                           child:
-                                                              SvgPicture.asset(
-                                                            flags[element
-                                                                        .code ??
-                                                                    ""] ??
-                                                                "",
-                                                            height: 20,
-                                                            width: 20,
-                                                            fit: BoxFit.cover,
-                                                          ),
+                                                              element.dialCode !=
+                                                                      null
+                                                                  ? SvgPicture
+                                                                      .asset(
+                                                                      flags[element.code ??
+                                                                              ""] ??
+                                                                          "",
+                                                                      height:
+                                                                          20,
+                                                                      width: 20,
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                    )
+                                                                  : Container(),
                                                         ),
                                                       ),
-                                                      Text(element.dialCode ??
-                                                          ""),
-                                                      Text(element.name ?? ""),
+                                                      Text(
+                                                          element.dialCode ??
+                                                              "",
+                                                          style: myTextStyle),
+                                                      Text(element.name ?? "",
+                                                          style: myTextStyle),
                                                     ],
                                                   ),
                                                 ),
@@ -1145,7 +1553,18 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                             phoneCodeFilter.clear();
                                             Navigator.pop(context);
                                           },
-                                          child: Padding(
+                                          focusColor: focusColorListTile,
+                                          hoverColor: hoverColorListTile,
+                                          highlightColor:
+                                              highlightColorListTile,
+                                          overlayColor: overlayColorListTile,
+                                          splashColor: splashColorListTile,
+                                          borderRadius: borderRadiusListTile,
+                                          customBorder: customBorderListTile,
+                                          hoverDuration: hoverDurationListTile,
+                                          child: Container(
+                                            decoration: listTileDecoration,
+                                            margin: listTileMargin,
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10.0),
                                             child: Wrap(
@@ -1158,23 +1577,32 @@ phoneCodeSelect(BuildContext context, Offset buttonPosition, Size buttonSize,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             10),
-                                                    child: SvgPicture.asset(
-                                                      flags[totalCounties[index]
-                                                                  .code ??
-                                                              ""] ??
-                                                          "",
-                                                      height: 20,
-                                                      width: 20,
-                                                      fit: BoxFit.cover,
-                                                    ),
+                                                    child:
+                                                        totalCounties[index]
+                                                                    .dialCode !=
+                                                                null
+                                                            ? SvgPicture.asset(
+                                                                flags[totalCounties[index]
+                                                                            .code ??
+                                                                        ""] ??
+                                                                    "",
+                                                                height: 20,
+                                                                width: 20,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              )
+                                                            : Container(),
                                                   ),
                                                 ),
-                                                Text(totalCounties[index]
-                                                        .dialCode ??
-                                                    ""),
+                                                Text(
+                                                    totalCounties[index]
+                                                            .dialCode ??
+                                                        "",
+                                                    style: myTextStyle),
                                                 Text(
                                                     totalCounties[index].name ??
-                                                        ""),
+                                                        "",
+                                                    style: myTextStyle),
                                               ],
                                             ),
                                           ),

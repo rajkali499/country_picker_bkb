@@ -24,6 +24,8 @@ country and state only.
 <img alt="Select Country Dialog" src="https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984848469.jpeg" width="200"/>
 <img alt="Select State Dialog" src="https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984849674.jpeg" width="200"/>
 <img alt="Select City Dialog" src="https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/1702984847859.jpeg" width="200"/>
+<img alt="Select Country Dialog with Custom style" src="https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/Styled_Country_Select.JPEG" width="200"/>
+<img alt="Select Country Dialog with Custom style" src="https://raw.githubusercontent.com/rajkali499/country_picker_bkb/main/Styled_Country_Select_1.png" width="200"/>
 
 
 ## Getting started
@@ -34,7 +36,7 @@ country and state only.
 
 -> run the following
 
-    flutter pun get
+    flutter pub get
 
 -> import the package in the file you want to use
 

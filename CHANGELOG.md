@@ -44,3 +44,13 @@
 ## 1.0.13
 
 * Bug Fix on image size on readme
+
+* changes to minify the JSON file
+
+## 1.0.14
+
+* Added State Codes for the Available states
+
+* Added Phone Number Length with respect to Countries
+
+* Added feature to customize the dialog ui styling based on the user need like updating the background color, shape, Overlay color etc.\

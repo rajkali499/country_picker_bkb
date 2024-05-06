@@ -12,7 +12,7 @@ final emptyCountry = CountryModel();
 final emptyState = StateModel();
 final emptyCity = CityModel();
 
-const jsonPath = 'country_details_minified.json';
+const jsonPath = 'country_details_with_stateCodeAndPhoneNumLength_minified.json';
 
 var flags = {
   "AD": "packages/country_picker_bkb/lib/assets/svg/ad.svg",

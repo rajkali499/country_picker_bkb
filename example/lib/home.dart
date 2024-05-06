@@ -53,6 +53,10 @@ class _HomeState extends State<Home> {
                 height: 20,
               ),
               const Country(),
+              Country( decoration: BoxDecoration(
+                  color: Colors.pink.shade50,
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  border: Border.all(color: Colors.deepOrange))),
               const SizedBox(
                 height: 20,
               ),
@@ -63,6 +67,10 @@ class _HomeState extends State<Home> {
               const City(),
               const SizedBox(
                 height: 20,
+              ),
+              MobileNumberCode(textEditingController: textEditingController),
+              const SizedBox(
+                height: 100,
               ),
               MobileNumberCode(textEditingController: textEditingController),
             ],
